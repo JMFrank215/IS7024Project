@@ -1,0 +1,60 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/WelcomeElement"
+  },
+  "definitions": {
+    "WelcomeElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "COMMUNITY_COUNCIL_NEIGHBORHOOD": {
+          "type": "string"
+        },
+        "CPD_NEIGHBORHOOD": {
+          "type": "string"
+        },
+        "DATE_FROM": {
+          "type": "string"
+        },
+        "DAYOFWEEK": {
+          "type": "string"
+        },
+        "INCIDENT_NO": {
+          "type": "string",
+          "format": "integer"
+        },
+        "LATITUDE_X": {
+          "type": "string"
+        },
+        "LOCATION": {
+          "type": "string"
+        },
+        "LONGITUDE_X": {
+          "type": "string"
+        },
+        "OFFENSE": {
+          "type": "string"
+        },
+        "ZIP": {
+          "type": "string",
+          "format": "integer"
+        }
+      },
+      "required": [
+        "COMMUNITY_COUNCIL_NEIGHBORHOOD",
+        "CPD_NEIGHBORHOOD",
+        "DATE_FROM",
+        "DAYOFWEEK",
+        "INCIDENT_NO",
+        "LATITUDE_X",
+        "LOCATION",
+        "LONGITUDE_X",
+        "OFFENSE",
+        "ZIP"
+      ],
+      "title": "WelcomeElement"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
+    var crimes = (QuickType.Crime[]) ViewData["Crime"];
 }
 <!-- Image over text help found at: https://css-tricks.com/text-blocks-over-image/ -->
 <head>
@@ -88,4 +89,24 @@
             </div>
         </div>
     </div>
+    <table border="1" width="90%">
+        <tr><th>Neighborhood</th><th>Neighborhood</th><th>Date</th><th>Day of Week</th><th>Incident #</th><th>Latitude</th><th>Locatuon</th><th>Longitude</th><th>Offense</th><th>Zip</th></tr>
+        @{ 
+            foreach (QuickType.Crime crime in crimes)
+            {
+                <tr>
+                    <td>@crime.CommunityCouncilNeighborhood</td>
+                    <td>@crime.CpdNeighborhood</td>
+                    <td>@crime.DateFrom</td>
+                    <td>@crime.Dayofweek</td>
+                    <td>@crime.IncidentNo</td>
+                    <td>@crime.LatitudeX</td>
+                    <td>@crime.Location</td>
+                    <td>@crime.LongitudeX</td>
+                    <td>@crime.Offense</td>
+                    <td>@crime.Zip</td>
+                </tr>
+            }
+        }
+    </table>
 </body>
