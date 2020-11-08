@@ -2,9 +2,27 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    // not needed? List<QuickType.Park> parksList = (List<QuickType.Park>)ViewData["Park"];
+    var parks = (QuickType.Park[]) ViewData["Park"];
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Welcome</a>.</p>
+    <h1 class="display-4">Parks</h1>
+    </hr>
+    <table border="1" width="90%">
+        <tr><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th><th>Global ID</th></tr>
+        @{
+            foreach (QuickType.Park park in parks) {
+                <tr>
+                    <td>@park.Name</td>
+                    <td>@park.ShortName</td>
+                    <td>@park.Parktype</td>  
+                    <td>@park.County</td>
+                    <td>@park.Acres</td>
+                    <td>@park.Globalid</td>
+                </tr>
+            }
+        }
+    </table>
+
 </div>
