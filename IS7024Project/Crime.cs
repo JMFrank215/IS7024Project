@@ -55,7 +55,7 @@ namespace QuickType
 
     public enum Dayofweek { Empty, Friday, Monday, Saturday, Sunday, Thursday, Tuesday, Wednesday };
 
-    public enum Location { Empty, The01SingleFamily2Story, The01SingleFamily3PlusFloors, The01SingleFamilyBasement, The01SingleFamilyCondo, The01SingleFamilyHome, The01SingleFamilyRanch1Story, The02MultiFamily, The02MultiFamily4Plex, The02MultiFamilyApartment, The02MultiFamilyDuplex, The03ResidentialFacility, The04OtherResidential, The05GarageShed, The06TransitFacility, The07GovernmentOffice, The08School, The09College, The10Church, The11Hospital, The12JailPrision, The13ParkingGarage, The14OtherPublicAccessBuilding, The15AutoShop, The16FinancialInstitution, The17BarberBeautyShop, The18HotelMotel, The19DryCleanersLaundry, The20ProfessionalOffice, The21DoctorSOffice, The22OtherBusinessOffice, The23AmusementCenter, The23RecreationEntertainmentCenter, The24RentalStorageFacility, The25OtherCommercialServiceLocation, The26Bar, The27BuySellTradeShop, The28Restaurant, The29GasStation, The30AutoSalesLot, The31JewelryStore, The32ClothingStore, The33Drugstore, The34LiquorStore, The35ShoppingMall, The36SportingGoods, The37GrocerySupermarket, The38VarietyConvenienceStore, The39DepartmentDiscountStore, The40OtherRetailStore, The41FactoryMillPlant, The42OtherBuilding, The43Yard, The44ConstructionSite, The45LakeWaterway, The46FieldWoods, The47Street, The48ParkingLot, The49ParkPlayground, The50Cemetery, The51PublicTransitVehicle, The52OtherOutsideLocation, The53AbandonedCondemnedStructure, The54AmusementPark, The55ArenaStadiumFairgroundsColiseum, The56AtmMachineSeparateFromBank, The57CampCampground, The58CargoContainer, The59DaycareFacility, The60DockWhartFreightModalTerminal, The61FarmFacility, The62GamblingFacilityCasinoRaceTrack, The65ShelterMissionHomeless, The67Library, The77Other };
+    public enum Location { The01SingleFamily2Story, The01SingleFamily3PlusFloors, The01SingleFamilyBasement, The01SingleFamilyCondo, The01SingleFamilyHome, The01SingleFamilyRanch1Story, The02MultiFamily, The02MultiFamily4Plex, The02MultiFamilyApartment, The02MultiFamilyDuplex, The03ResidentialFacility, The04OtherResidential, The05GarageShed, The06TransitFacility, The07GovernmentOffice, The08School, The09College, The10Church, The11Hospital, The12JailPrision, The13ParkingGarage, The14OtherPublicAccessBuilding, The15AutoShop, The16FinancialInstitution, The17BarberBeautyShop, The18HotelMotel, The19DryCleanersLaundry, The20ProfessionalOffice, The21DoctorSOffice, The22OtherBusinessOffice, The23AmusementCenter, The23RecreationEntertainmentCenter, The24RentalStorageFacility, The25OtherCommercialServiceLocation, The26Bar, The27BuySellTradeShop, The28Restaurant, The29GasStation, The30AutoSalesLot, The31JewelryStore, The32ClothingStore, The33Drugstore, The34LiquorStore, The35ShoppingMall, The36SportingGoods, The37GrocerySupermarket, The38VarietyConvenienceStore, The39DepartmentDiscountStore, The40OtherRetailStore, The41FactoryMillPlant, The42OtherBuilding, The43Yard, The44ConstructionSite, The45LakeWaterway, The46FieldWoods, The47Street, The48ParkingLot, The49ParkPlayground, The50Cemetery, The51PublicTransitVehicle, The52OtherOutsideLocation, The53AbandonedCondemnedStructure, The54AmusementPark, The55ArenaStadiumFairgroundsColiseum, The56AtmMachineSeparateFromBank, The58CargoContainer, The59DaycareFacility, The60DockWhartFreightModalTerminal, The61FarmFacility, The62GamblingFacilityCasinoRaceTrack, The65ShelterMissionHomeless, The67Library, The77Other };
 
     public partial class Crime
     {
@@ -842,8 +842,6 @@ namespace QuickType
             var value = serializer.Deserialize<string>(reader);
             switch (value)
             {
-                case "":
-                    return Location.Empty;
                 case "01-SINGLE FAMILY 2 STORY":
                     return Location.The01SingleFamily2Story;
                 case "01-SINGLE FAMILY 3 PLUS FLOORS":
@@ -974,8 +972,6 @@ namespace QuickType
                     return Location.The55ArenaStadiumFairgroundsColiseum;
                 case "56-ATM MACHINE SEPARATE FROM BANK":
                     return Location.The56AtmMachineSeparateFromBank;
-                case "57-CAMP / CAMPGROUND":
-                    return Location.The57CampCampground;
                 case "58-CARGO CONTAINER":
                     return Location.The58CargoContainer;
                 case "59-DAYCARE FACILITY":
@@ -1006,9 +1002,6 @@ namespace QuickType
             var value = (Location)untypedValue;
             switch (value)
             {
-                case Location.Empty:
-                    serializer.Serialize(writer, "");
-                    return;
                 case Location.The01SingleFamily2Story:
                     serializer.Serialize(writer, "01-SINGLE FAMILY 2 STORY");
                     return;
@@ -1203,9 +1196,6 @@ namespace QuickType
                     return;
                 case Location.The56AtmMachineSeparateFromBank:
                     serializer.Serialize(writer, "56-ATM MACHINE SEPARATE FROM BANK");
-                    return;
-                case Location.The57CampCampground:
-                    serializer.Serialize(writer, "57-CAMP / CAMPGROUND");
                     return;
                 case Location.The58CargoContainer:
                     serializer.Serialize(writer, "58-CARGO CONTAINER");
