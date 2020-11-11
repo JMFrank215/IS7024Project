@@ -26,11 +26,7 @@ namespace IS7024Project.Pages
             using(var webClient = new WebClient())
             {
                 string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");
-                
-                
-                    var crime = Crime.FromJson(jsonString);
-                   
-                
+                var crime = Crime.FromJson(jsonString);
                 ViewData["Crime"] = crime;
             }
            
