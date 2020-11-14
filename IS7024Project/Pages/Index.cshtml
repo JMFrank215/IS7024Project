@@ -1,8 +1,9 @@
 ﻿@page
+@using System.Text.RegularExpressions
 @model IndexModel
 @{
-    var crimes = (QuickType.Crime[]) ViewData["Crime"];
-    var parks = (QuickTypeParks.Parks[]) ViewData["Parks"];
+    var crimes = (QuickType.Crime[])ViewData["Crime"];
+    var parks = (QuickTypeParks.Parks[])ViewData["Parks"];
 }
 <!-- Image over text help found at: https://css-tricks.com/text-blocks-over-image/ -->
 <head>
@@ -86,7 +87,7 @@
             <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6935" class="card-img-top" />
             <div class="card-body">
                 <h1 class="card-title text-center text-white"><span class="badge badge-success text-center"<strong>Search by Area</strong></span></h1>
-                <p class="card-text">Enter your search terms below to view parks in your area and the associated crima reports for that area.</p>
+                <p class="card-text">Enter your search terms below to view parks in your area and the associated crime reports for that area.</p>
             </div>
         </div>
     </div>
@@ -98,11 +99,11 @@
                 <tr>
                     <td>@crime.IncidentNo</td>
                     <td>@crime.Offense</td>
-                    <td>@crime.Location</td>
+                    <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
                     <td>@crime.DateFrom</td>
                     <td>@crime.Dayofweek</td>
-                    <td>@crime.CommunityCouncilNeighborhood</td>
-                    <td>@crime.CpdNeighborhood</td>
+                    <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
                     <td>@crime.LatitudeX</td>
                     <td>@crime.LongitudeX</td>
                     <td>@crime.Zip</td>
@@ -110,22 +111,4 @@
             }
         }
     </table>
-    <div style="padding-top: 20px">
-        <table border="1" width="90%">
-            <tr><th>Global ID</th><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th></tr>
-            @{
-                foreach (QuickTypeParks.Parks park in parks)
-                {
-                    <tr>
-                        <td>@park.Globalid</td>
-                        <td>@park.Name</td>
-                        <td>@park.ShortName</td>
-                        <td>@park.Parktype</td>
-                        <td>@park.County</td>
-                        <td>@park.Acres</td>
-                    </tr>
-                }
-            }
-        </table>
-    </div>
 </body>

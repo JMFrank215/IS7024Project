@@ -1,31 +1,28 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Schema;
 using QuickType;
 using QuickTypeParks;
 
 namespace IS7024Project.Pages
 {
-    public class IndexModel : PageModel
+    public class ParkListModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<ParkListModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public ParkListModel(ILogger<ParkListModel> logger)
         {
             _logger = logger;
         }
 
         public void OnGet()
         {
-            using(var webClient = new WebClient())
+            using (var webClient = new WebClient())
             {
                 //Consuming Parks data
                 string parksJSON = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/Parks_Data.txt");

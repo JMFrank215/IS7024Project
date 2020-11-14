@@ -1,0 +1,73 @@
+﻿@page
+@using System.Text.RegularExpressions
+@model IS7024Project.Pages.ParkListModel
+@{
+    var crimes = (QuickType.Crime[])ViewData["Crime"];
+    var parks = (QuickTypeParks.Parks[])ViewData["Parks"];
+}
+<!-- Image over text help found at: https://css-tricks.com/text-blocks-over-image/ -->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .image {
+            position: relative;
+            width: 100%;
+        }
+
+        h2 {
+            position: absolute;
+            top: 200px;
+            left: 0;
+            width: 100%;
+        }
+
+            h2 span {
+                color: springgreen;
+                font: bold 45px/45px Helvetica, Sans-Serif;
+                letter-spacing: -1px;
+                background: rgb(0,0,0);
+                background: rgba(0,30,0,0.8);
+                padding: 10px;
+            }
+
+        h3 {
+            position: absolute;
+            top: 200px;
+            left: 0;
+            width: 100%;
+        }
+
+            h3 span {
+                color: white;
+                font: 20px/35px Helvetica, Sans-Serif;
+                letter-spacing: 0px;
+                background: rgb(0,0,0);
+                background: rgb(0, 30, 0, 0.8);
+                padding: 11px;
+            }
+    </style>
+    <div class="text-center">
+        <h1 class="display-4">Cincy Safe Space</h1>
+    </div>
+
+</head>
+<body>
+    <div style="padding-top: 20px">
+        <table border="1" width="90%">
+            <tr><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th></tr>
+            @{
+                foreach (QuickTypeParks.Parks park in parks)
+                {
+                    <tr>
+                        <td>@park.Name</td>
+                        <td>@Regex.Replace(@park.ShortName.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                        <td>@Regex.Replace(@park.Parktype.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                        <td>@park.County</td>
+                        <td>@park.Acres</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>
+
