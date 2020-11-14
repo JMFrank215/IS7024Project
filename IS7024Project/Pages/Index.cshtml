@@ -2,6 +2,7 @@
 @model IndexModel
 @{
     var crimes = (QuickType.Crime[]) ViewData["Crime"];
+    var parks = (QuickTypeParks.Parks[]) ViewData["Parks"];
 }
 <!-- Image over text help found at: https://css-tricks.com/text-blocks-over-image/ -->
 <head>
@@ -69,7 +70,7 @@
             </div>
             <div class="col-sm text-center">
                 <h4><span class="badge badge badge-success">PDI Crime Data</span></h4>
-            </div>           
+            </div>
         </div>
         <div class="row">
             <div class="col-sm text-center">
@@ -90,23 +91,41 @@
         </div>
     </div>
     <table border="1" width="90%">
-        <tr><th>Neighborhood</th><th>Neighborhood</th><th>Date</th><th>Day of Week</th><th>Incident #</th><th>Latitude</th><th>Locatuon</th><th>Longitude</th><th>Offense</th><th>Zip</th></tr>
-        @{ 
+        <tr><th>Incident #</th><th>Offense</th><th>Location</th><th>Date</th><th>Day of Week</th><th>CC Neighborhood</th><th>CPD Neighborhood</th><th>Latitude</th><th>Longitude</th><th>Zip</th></tr>
+        @{
             foreach (QuickType.Crime crime in crimes)
             {
                 <tr>
-                    <td>@crime.CommunityCouncilNeighborhood</td>
-                    <td>@crime.CpdNeighborhood</td>
+                    <td>@crime.IncidentNo</td>
+                    <td>@crime.Offense</td>
+                    <td>@crime.Location</td>
                     <td>@crime.DateFrom</td>
                     <td>@crime.Dayofweek</td>
-                    <td>@crime.IncidentNo</td>
+                    <td>@crime.CommunityCouncilNeighborhood</td>
+                    <td>@crime.CpdNeighborhood</td>
                     <td>@crime.LatitudeX</td>
-                    <td>@crime.Location</td>
                     <td>@crime.LongitudeX</td>
-                    <td>@crime.Offense</td>
                     <td>@crime.Zip</td>
                 </tr>
             }
         }
     </table>
+    <div style="padding-top: 20px">
+        <table border="1" width="90%">
+            <tr><th>Global ID</th><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th></tr>
+            @{
+                foreach (QuickTypeParks.Parks park in parks)
+                {
+                    <tr>
+                        <td>@park.Globalid</td>
+                        <td>@park.Name</td>
+                        <td>@park.ShortName</td>
+                        <td>@park.Parktype</td>
+                        <td>@park.County</td>
+                        <td>@park.Acres</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
 </body>

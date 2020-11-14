@@ -2,7 +2,7 @@
 //
 // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
 //
-//    using QuickType; ????
+//    using QuickType;
 //
 //    var crime = Crime.FromJson(jsonString);
 
@@ -18,26 +18,25 @@ namespace QuickType
     public partial class Crime
     {
         [JsonProperty("COMMUNITY_COUNCIL_NEIGHBORHOOD")]
-        public string CommunityCouncilNeighborhood { get; set; }
+        public CommunityCouncilNeighborhood CommunityCouncilNeighborhood { get; set; }
 
         [JsonProperty("CPD_NEIGHBORHOOD")]
-        public string CpdNeighborhood { get; set; }
+        public CpdNeighborhood CpdNeighborhood { get; set; }
 
         [JsonProperty("DATE_FROM")]
         public string DateFrom { get; set; }
 
         [JsonProperty("DAYOFWEEK")]
-        public string Dayofweek { get; set; }
+        public Dayofweek Dayofweek { get; set; }
 
         [JsonProperty("INCIDENT_NO")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long IncidentNo { get; set; }
+        public string IncidentNo { get; set; }
 
         [JsonProperty("LATITUDE_X")]
         public string LatitudeX { get; set; }
 
         [JsonProperty("LOCATION")]
-        public string Location { get; set; }
+        public Location Location { get; set; }
 
         [JsonProperty("LONGITUDE_X")]
         public string LongitudeX { get; set; }
@@ -49,6 +48,14 @@ namespace QuickType
         [JsonConverter(typeof(ParseStringConverter))]
         public long Zip { get; set; }
     }
+
+    public enum CommunityCouncilNeighborhood { Avondale, AvondaleNorthAvondale, BondHill, California, CampWashington, Carthage, Clifton, CollegeHill, CollegeHillSpringGrove, CollegeHillWintonHills, ColumbiaTusculum, ColumbiaTusculumEastEnd, ColumbiaTusculumMtLookout, Corryville, CorryvilleHeights, Cuf, CufHeights, Downtown, DowntownPendleton, EastEnd, EastPriceHill, EastWalnutHills, EastWestwood, EastWestwoodWestwood, EnglishWoods, Evanston, Hartwell, HydePark, HydeParkOakley, KennedyHeights, Linwood, LowerPriceHill, Madisonville, Millvale, MountAdams, MountAiry, MountAuburn, MountAuburnWalnutHills, MountLookout, MountWashington, NA, NorthAvondale, NorthFairmount, Northside, NorthsideSouthCumminsville, NorthsideWestwood, Oakley, Otr, PaddockHills, Pendleton, PleasantRidge, Queensgate, Riverside, RiversideSaylerPark, RiversideSedamsville, Roselawn, SaylerPark, Sedamsville, SouthCumminsville, SouthFairmount, SouthFairmountWestwood, SpringGroveVillage, SpringGroveWintonHills, VillagesAtRollHill, WalnutHills, WestEnd, WestPriceHill, Westwood, WintonHills };
+
+    public enum CpdNeighborhood { Avondale, Bondhill, CBDRiverfront, California, CampWashington, Carthage, Clifton, CliftonUniversityHeights, CollegeHill, ColumbiaTusculum, Corryville, EastEnd, EastPriceHill, EastWalnutHills, EastWestwood, Empty, EnglishWoods, Evanston, Fairview, FayApartments, Hartwell, HydePark, KennedyHeights, Linwood, LowerPriceHill, Madisonville, Millvale, MountAdams, MountAiry, MountAuburn, MtLookout, MtWashington, NorthAvondale, NorthFairmount, Northside, OBryonville, Oakley, OverTheRhine, PaddockHills, Pendleton, PleasantRidge, Queensgate, Riverside, Roselawn, SCumminsville, SaylerPark, Sedamsville, SouthFairmount, SpringGroveVillage, WalnutHills, WestEnd, WestPriceHill, Westwood, WintonHills };
+
+    public enum Dayofweek { Empty, Friday, Monday, Saturday, Sunday, Thursday, Tuesday, Wednesday };
+
+    public enum Location { The01SingleFamily2Story, The01SingleFamily3PlusFloors, The01SingleFamilyBasement, The01SingleFamilyCondo, The01SingleFamilyHome, The01SingleFamilyRanch1Story, The02MultiFamily, The02MultiFamily4Plex, The02MultiFamilyApartment, The02MultiFamilyDuplex, The03ResidentialFacility, The04OtherResidential, The05GarageShed, The06TransitFacility, The07GovernmentOffice, The08School, The09College, The10Church, The11Hospital, The12JailPrision, The13ParkingGarage, The14OtherPublicAccessBuilding, The15AutoShop, The16FinancialInstitution, The17BarberBeautyShop, The18HotelMotel, The19DryCleanersLaundry, The20ProfessionalOffice, The21DoctorSOffice, The22OtherBusinessOffice, The23AmusementCenter, The23RecreationEntertainmentCenter, The24RentalStorageFacility, The25OtherCommercialServiceLocation, The26Bar, The27BuySellTradeShop, The28Restaurant, The29GasStation, The30AutoSalesLot, The31JewelryStore, The32ClothingStore, The33Drugstore, The34LiquorStore, The35ShoppingMall, The36SportingGoods, The37GrocerySupermarket, The38VarietyConvenienceStore, The39DepartmentDiscountStore, The40OtherRetailStore, The41FactoryMillPlant, The42OtherBuilding, The43Yard, The44ConstructionSite, The45LakeWaterway, The46FieldWoods, The47Street, The48ParkingLot, The49ParkPlayground, The50Cemetery, The51PublicTransitVehicle, The52OtherOutsideLocation, The53AbandonedCondemnedStructure, The54AmusementPark, The55ArenaStadiumFairgroundsColiseum, The56AtmMachineSeparateFromBank, The58CargoContainer, The59DaycareFacility, The60DockWhartFreightModalTerminal, The61FarmFacility, The62GamblingFacilityCasinoRaceTrack, The65ShelterMissionHomeless, The67Library, The77Other };
 
     public partial class Crime
     {
@@ -68,9 +75,1157 @@ namespace QuickType
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
+                CommunityCouncilNeighborhoodConverter.Singleton,
+                CpdNeighborhoodConverter.Singleton,
+                DayofweekConverter.Singleton,
+                LocationConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
+    }
+
+    internal class CommunityCouncilNeighborhoodConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(CommunityCouncilNeighborhood) || t == typeof(CommunityCouncilNeighborhood?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "AVONDALE":
+                    return CommunityCouncilNeighborhood.Avondale;
+                case "AVONDALE - NORTH AVONDALE":
+                    return CommunityCouncilNeighborhood.AvondaleNorthAvondale;
+                case "BOND HILL":
+                    return CommunityCouncilNeighborhood.BondHill;
+                case "CALIFORNIA":
+                    return CommunityCouncilNeighborhood.California;
+                case "CAMP WASHINGTON":
+                    return CommunityCouncilNeighborhood.CampWashington;
+                case "CARTHAGE":
+                    return CommunityCouncilNeighborhood.Carthage;
+                case "CLIFTON":
+                    return CommunityCouncilNeighborhood.Clifton;
+                case "COLLEGE HILL":
+                    return CommunityCouncilNeighborhood.CollegeHill;
+                case "COLLEGE HILL - SPRING GROVE":
+                    return CommunityCouncilNeighborhood.CollegeHillSpringGrove;
+                case "COLLEGE HILL - WINTON HILLS":
+                    return CommunityCouncilNeighborhood.CollegeHillWintonHills;
+                case "COLUMBIA TUSCULUM":
+                    return CommunityCouncilNeighborhood.ColumbiaTusculum;
+                case "COLUMBIA TUSCULUM - EAST END":
+                    return CommunityCouncilNeighborhood.ColumbiaTusculumEastEnd;
+                case "COLUMBIA TUSCULUM - MT LOOKOUT":
+                    return CommunityCouncilNeighborhood.ColumbiaTusculumMtLookout;
+                case "CORRYVILLE":
+                    return CommunityCouncilNeighborhood.Corryville;
+                case "CORRYVILLE - HEIGHTS":
+                    return CommunityCouncilNeighborhood.CorryvilleHeights;
+                case "CUF":
+                    return CommunityCouncilNeighborhood.Cuf;
+                case "CUF - HEIGHTS":
+                    return CommunityCouncilNeighborhood.CufHeights;
+                case "DOWNTOWN":
+                    return CommunityCouncilNeighborhood.Downtown;
+                case "DOWNTOWN - PENDLETON":
+                    return CommunityCouncilNeighborhood.DowntownPendleton;
+                case "EAST END":
+                    return CommunityCouncilNeighborhood.EastEnd;
+                case "EAST PRICE HILL":
+                    return CommunityCouncilNeighborhood.EastPriceHill;
+                case "EAST WALNUT HILLS":
+                    return CommunityCouncilNeighborhood.EastWalnutHills;
+                case "EAST WESTWOOD":
+                    return CommunityCouncilNeighborhood.EastWestwood;
+                case "EAST WESTWOOD - WESTWOOD":
+                    return CommunityCouncilNeighborhood.EastWestwoodWestwood;
+                case "ENGLISH WOODS":
+                    return CommunityCouncilNeighborhood.EnglishWoods;
+                case "EVANSTON":
+                    return CommunityCouncilNeighborhood.Evanston;
+                case "HARTWELL":
+                    return CommunityCouncilNeighborhood.Hartwell;
+                case "HYDE PARK":
+                    return CommunityCouncilNeighborhood.HydePark;
+                case "HYDE PARK - OAKLEY":
+                    return CommunityCouncilNeighborhood.HydeParkOakley;
+                case "KENNEDY HEIGHTS":
+                    return CommunityCouncilNeighborhood.KennedyHeights;
+                case "LINWOOD":
+                    return CommunityCouncilNeighborhood.Linwood;
+                case "LOWER PRICE HILL":
+                    return CommunityCouncilNeighborhood.LowerPriceHill;
+                case "MADISONVILLE":
+                    return CommunityCouncilNeighborhood.Madisonville;
+                case "MILLVALE":
+                    return CommunityCouncilNeighborhood.Millvale;
+                case "MOUNT ADAMS":
+                    return CommunityCouncilNeighborhood.MountAdams;
+                case "MOUNT AIRY":
+                    return CommunityCouncilNeighborhood.MountAiry;
+                case "MOUNT AUBURN":
+                    return CommunityCouncilNeighborhood.MountAuburn;
+                case "MOUNT AUBURN - WALNUT HILLS":
+                    return CommunityCouncilNeighborhood.MountAuburnWalnutHills;
+                case "MOUNT LOOKOUT":
+                    return CommunityCouncilNeighborhood.MountLookout;
+                case "MOUNT WASHINGTON":
+                    return CommunityCouncilNeighborhood.MountWashington;
+                case "N/A":
+                    return CommunityCouncilNeighborhood.NA;
+                case "NORTH AVONDALE":
+                    return CommunityCouncilNeighborhood.NorthAvondale;
+                case "NORTH FAIRMOUNT":
+                    return CommunityCouncilNeighborhood.NorthFairmount;
+                case "NORTHSIDE":
+                    return CommunityCouncilNeighborhood.Northside;
+                case "NORTHSIDE - WESTWOOD":
+                    return CommunityCouncilNeighborhood.NorthsideWestwood;
+                case "NORTHSIDE -SOUTH CUMMINSVILLE":
+                    return CommunityCouncilNeighborhood.NorthsideSouthCumminsville;
+                case "OAKLEY":
+                    return CommunityCouncilNeighborhood.Oakley;
+                case "OTR":
+                    return CommunityCouncilNeighborhood.Otr;
+                case "PADDOCK HILLS":
+                    return CommunityCouncilNeighborhood.PaddockHills;
+                case "PENDLETON":
+                    return CommunityCouncilNeighborhood.Pendleton;
+                case "PLEASANT RIDGE":
+                    return CommunityCouncilNeighborhood.PleasantRidge;
+                case "QUEENSGATE":
+                    return CommunityCouncilNeighborhood.Queensgate;
+                case "RIVERSIDE":
+                    return CommunityCouncilNeighborhood.Riverside;
+                case "RIVERSIDE - SAYLER PARK":
+                    return CommunityCouncilNeighborhood.RiversideSaylerPark;
+                case "RIVERSIDE - SEDAMSVILLE":
+                    return CommunityCouncilNeighborhood.RiversideSedamsville;
+                case "ROSELAWN":
+                    return CommunityCouncilNeighborhood.Roselawn;
+                case "SAYLER PARK":
+                    return CommunityCouncilNeighborhood.SaylerPark;
+                case "SEDAMSVILLE":
+                    return CommunityCouncilNeighborhood.Sedamsville;
+                case "SOUTH CUMMINSVILLE":
+                    return CommunityCouncilNeighborhood.SouthCumminsville;
+                case "SOUTH FAIRMOUNT":
+                    return CommunityCouncilNeighborhood.SouthFairmount;
+                case "SOUTH FAIRMOUNT - WESTWOOD":
+                    return CommunityCouncilNeighborhood.SouthFairmountWestwood;
+                case "SPRING GROVE - WINTON HILLS":
+                    return CommunityCouncilNeighborhood.SpringGroveWintonHills;
+                case "SPRING GROVE VILLAGE":
+                    return CommunityCouncilNeighborhood.SpringGroveVillage;
+                case "VILLAGES AT ROLL HILL":
+                    return CommunityCouncilNeighborhood.VillagesAtRollHill;
+                case "WALNUT HILLS":
+                    return CommunityCouncilNeighborhood.WalnutHills;
+                case "WEST END":
+                    return CommunityCouncilNeighborhood.WestEnd;
+                case "WEST PRICE HILL":
+                    return CommunityCouncilNeighborhood.WestPriceHill;
+                case "WESTWOOD":
+                    return CommunityCouncilNeighborhood.Westwood;
+                case "WINTON HILLS":
+                    return CommunityCouncilNeighborhood.WintonHills;
+            }
+            throw new Exception("Cannot unmarshal type CommunityCouncilNeighborhood");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (CommunityCouncilNeighborhood)untypedValue;
+            switch (value)
+            {
+                case CommunityCouncilNeighborhood.Avondale:
+                    serializer.Serialize(writer, "AVONDALE");
+                    return;
+                case CommunityCouncilNeighborhood.AvondaleNorthAvondale:
+                    serializer.Serialize(writer, "AVONDALE - NORTH AVONDALE");
+                    return;
+                case CommunityCouncilNeighborhood.BondHill:
+                    serializer.Serialize(writer, "BOND HILL");
+                    return;
+                case CommunityCouncilNeighborhood.California:
+                    serializer.Serialize(writer, "CALIFORNIA");
+                    return;
+                case CommunityCouncilNeighborhood.CampWashington:
+                    serializer.Serialize(writer, "CAMP WASHINGTON");
+                    return;
+                case CommunityCouncilNeighborhood.Carthage:
+                    serializer.Serialize(writer, "CARTHAGE");
+                    return;
+                case CommunityCouncilNeighborhood.Clifton:
+                    serializer.Serialize(writer, "CLIFTON");
+                    return;
+                case CommunityCouncilNeighborhood.CollegeHill:
+                    serializer.Serialize(writer, "COLLEGE HILL");
+                    return;
+                case CommunityCouncilNeighborhood.CollegeHillSpringGrove:
+                    serializer.Serialize(writer, "COLLEGE HILL - SPRING GROVE");
+                    return;
+                case CommunityCouncilNeighborhood.CollegeHillWintonHills:
+                    serializer.Serialize(writer, "COLLEGE HILL - WINTON HILLS");
+                    return;
+                case CommunityCouncilNeighborhood.ColumbiaTusculum:
+                    serializer.Serialize(writer, "COLUMBIA TUSCULUM");
+                    return;
+                case CommunityCouncilNeighborhood.ColumbiaTusculumEastEnd:
+                    serializer.Serialize(writer, "COLUMBIA TUSCULUM - EAST END");
+                    return;
+                case CommunityCouncilNeighborhood.ColumbiaTusculumMtLookout:
+                    serializer.Serialize(writer, "COLUMBIA TUSCULUM - MT LOOKOUT");
+                    return;
+                case CommunityCouncilNeighborhood.Corryville:
+                    serializer.Serialize(writer, "CORRYVILLE");
+                    return;
+                case CommunityCouncilNeighborhood.CorryvilleHeights:
+                    serializer.Serialize(writer, "CORRYVILLE - HEIGHTS");
+                    return;
+                case CommunityCouncilNeighborhood.Cuf:
+                    serializer.Serialize(writer, "CUF");
+                    return;
+                case CommunityCouncilNeighborhood.CufHeights:
+                    serializer.Serialize(writer, "CUF - HEIGHTS");
+                    return;
+                case CommunityCouncilNeighborhood.Downtown:
+                    serializer.Serialize(writer, "DOWNTOWN");
+                    return;
+                case CommunityCouncilNeighborhood.DowntownPendleton:
+                    serializer.Serialize(writer, "DOWNTOWN - PENDLETON");
+                    return;
+                case CommunityCouncilNeighborhood.EastEnd:
+                    serializer.Serialize(writer, "EAST END");
+                    return;
+                case CommunityCouncilNeighborhood.EastPriceHill:
+                    serializer.Serialize(writer, "EAST PRICE HILL");
+                    return;
+                case CommunityCouncilNeighborhood.EastWalnutHills:
+                    serializer.Serialize(writer, "EAST WALNUT HILLS");
+                    return;
+                case CommunityCouncilNeighborhood.EastWestwood:
+                    serializer.Serialize(writer, "EAST WESTWOOD");
+                    return;
+                case CommunityCouncilNeighborhood.EastWestwoodWestwood:
+                    serializer.Serialize(writer, "EAST WESTWOOD - WESTWOOD");
+                    return;
+                case CommunityCouncilNeighborhood.EnglishWoods:
+                    serializer.Serialize(writer, "ENGLISH WOODS");
+                    return;
+                case CommunityCouncilNeighborhood.Evanston:
+                    serializer.Serialize(writer, "EVANSTON");
+                    return;
+                case CommunityCouncilNeighborhood.Hartwell:
+                    serializer.Serialize(writer, "HARTWELL");
+                    return;
+                case CommunityCouncilNeighborhood.HydePark:
+                    serializer.Serialize(writer, "HYDE PARK");
+                    return;
+                case CommunityCouncilNeighborhood.HydeParkOakley:
+                    serializer.Serialize(writer, "HYDE PARK - OAKLEY");
+                    return;
+                case CommunityCouncilNeighborhood.KennedyHeights:
+                    serializer.Serialize(writer, "KENNEDY HEIGHTS");
+                    return;
+                case CommunityCouncilNeighborhood.Linwood:
+                    serializer.Serialize(writer, "LINWOOD");
+                    return;
+                case CommunityCouncilNeighborhood.LowerPriceHill:
+                    serializer.Serialize(writer, "LOWER PRICE HILL");
+                    return;
+                case CommunityCouncilNeighborhood.Madisonville:
+                    serializer.Serialize(writer, "MADISONVILLE");
+                    return;
+                case CommunityCouncilNeighborhood.Millvale:
+                    serializer.Serialize(writer, "MILLVALE");
+                    return;
+                case CommunityCouncilNeighborhood.MountAdams:
+                    serializer.Serialize(writer, "MOUNT ADAMS");
+                    return;
+                case CommunityCouncilNeighborhood.MountAiry:
+                    serializer.Serialize(writer, "MOUNT AIRY");
+                    return;
+                case CommunityCouncilNeighborhood.MountAuburn:
+                    serializer.Serialize(writer, "MOUNT AUBURN");
+                    return;
+                case CommunityCouncilNeighborhood.MountAuburnWalnutHills:
+                    serializer.Serialize(writer, "MOUNT AUBURN - WALNUT HILLS");
+                    return;
+                case CommunityCouncilNeighborhood.MountLookout:
+                    serializer.Serialize(writer, "MOUNT LOOKOUT");
+                    return;
+                case CommunityCouncilNeighborhood.MountWashington:
+                    serializer.Serialize(writer, "MOUNT WASHINGTON");
+                    return;
+                case CommunityCouncilNeighborhood.NA:
+                    serializer.Serialize(writer, "N/A");
+                    return;
+                case CommunityCouncilNeighborhood.NorthAvondale:
+                    serializer.Serialize(writer, "NORTH AVONDALE");
+                    return;
+                case CommunityCouncilNeighborhood.NorthFairmount:
+                    serializer.Serialize(writer, "NORTH FAIRMOUNT");
+                    return;
+                case CommunityCouncilNeighborhood.Northside:
+                    serializer.Serialize(writer, "NORTHSIDE");
+                    return;
+                case CommunityCouncilNeighborhood.NorthsideWestwood:
+                    serializer.Serialize(writer, "NORTHSIDE - WESTWOOD");
+                    return;
+                case CommunityCouncilNeighborhood.NorthsideSouthCumminsville:
+                    serializer.Serialize(writer, "NORTHSIDE -SOUTH CUMMINSVILLE");
+                    return;
+                case CommunityCouncilNeighborhood.Oakley:
+                    serializer.Serialize(writer, "OAKLEY");
+                    return;
+                case CommunityCouncilNeighborhood.Otr:
+                    serializer.Serialize(writer, "OTR");
+                    return;
+                case CommunityCouncilNeighborhood.PaddockHills:
+                    serializer.Serialize(writer, "PADDOCK HILLS");
+                    return;
+                case CommunityCouncilNeighborhood.Pendleton:
+                    serializer.Serialize(writer, "PENDLETON");
+                    return;
+                case CommunityCouncilNeighborhood.PleasantRidge:
+                    serializer.Serialize(writer, "PLEASANT RIDGE");
+                    return;
+                case CommunityCouncilNeighborhood.Queensgate:
+                    serializer.Serialize(writer, "QUEENSGATE");
+                    return;
+                case CommunityCouncilNeighborhood.Riverside:
+                    serializer.Serialize(writer, "RIVERSIDE");
+                    return;
+                case CommunityCouncilNeighborhood.RiversideSaylerPark:
+                    serializer.Serialize(writer, "RIVERSIDE - SAYLER PARK");
+                    return;
+                case CommunityCouncilNeighborhood.RiversideSedamsville:
+                    serializer.Serialize(writer, "RIVERSIDE - SEDAMSVILLE");
+                    return;
+                case CommunityCouncilNeighborhood.Roselawn:
+                    serializer.Serialize(writer, "ROSELAWN");
+                    return;
+                case CommunityCouncilNeighborhood.SaylerPark:
+                    serializer.Serialize(writer, "SAYLER PARK");
+                    return;
+                case CommunityCouncilNeighborhood.Sedamsville:
+                    serializer.Serialize(writer, "SEDAMSVILLE");
+                    return;
+                case CommunityCouncilNeighborhood.SouthCumminsville:
+                    serializer.Serialize(writer, "SOUTH CUMMINSVILLE");
+                    return;
+                case CommunityCouncilNeighborhood.SouthFairmount:
+                    serializer.Serialize(writer, "SOUTH FAIRMOUNT");
+                    return;
+                case CommunityCouncilNeighborhood.SouthFairmountWestwood:
+                    serializer.Serialize(writer, "SOUTH FAIRMOUNT - WESTWOOD");
+                    return;
+                case CommunityCouncilNeighborhood.SpringGroveWintonHills:
+                    serializer.Serialize(writer, "SPRING GROVE - WINTON HILLS");
+                    return;
+                case CommunityCouncilNeighborhood.SpringGroveVillage:
+                    serializer.Serialize(writer, "SPRING GROVE VILLAGE");
+                    return;
+                case CommunityCouncilNeighborhood.VillagesAtRollHill:
+                    serializer.Serialize(writer, "VILLAGES AT ROLL HILL");
+                    return;
+                case CommunityCouncilNeighborhood.WalnutHills:
+                    serializer.Serialize(writer, "WALNUT HILLS");
+                    return;
+                case CommunityCouncilNeighborhood.WestEnd:
+                    serializer.Serialize(writer, "WEST END");
+                    return;
+                case CommunityCouncilNeighborhood.WestPriceHill:
+                    serializer.Serialize(writer, "WEST PRICE HILL");
+                    return;
+                case CommunityCouncilNeighborhood.Westwood:
+                    serializer.Serialize(writer, "WESTWOOD");
+                    return;
+                case CommunityCouncilNeighborhood.WintonHills:
+                    serializer.Serialize(writer, "WINTON HILLS");
+                    return;
+            }
+            throw new Exception("Cannot marshal type CommunityCouncilNeighborhood");
+        }
+
+        public static readonly CommunityCouncilNeighborhoodConverter Singleton = new CommunityCouncilNeighborhoodConverter();
+    }
+
+    internal class CpdNeighborhoodConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(CpdNeighborhood) || t == typeof(CpdNeighborhood?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "":
+                    return CpdNeighborhood.Empty;
+                case "AVONDALE":
+                    return CpdNeighborhood.Avondale;
+                case "BONDHILL":
+                    return CpdNeighborhood.Bondhill;
+                case "C. B. D. / RIVERFRONT":
+                    return CpdNeighborhood.CBDRiverfront;
+                case "CALIFORNIA":
+                    return CpdNeighborhood.California;
+                case "CAMP  WASHINGTON":
+                    return CpdNeighborhood.CampWashington;
+                case "CARTHAGE":
+                    return CpdNeighborhood.Carthage;
+                case "CLIFTON":
+                    return CpdNeighborhood.Clifton;
+                case "CLIFTON/UNIVERSITY HEIGHTS":
+                    return CpdNeighborhood.CliftonUniversityHeights;
+                case "COLLEGE  HILL":
+                    return CpdNeighborhood.CollegeHill;
+                case "COLUMBIA / TUSCULUM":
+                    return CpdNeighborhood.ColumbiaTusculum;
+                case "CORRYVILLE":
+                    return CpdNeighborhood.Corryville;
+                case "EAST  END":
+                    return CpdNeighborhood.EastEnd;
+                case "EAST  WESTWOOD":
+                    return CpdNeighborhood.EastWestwood;
+                case "EAST PRICE HILL":
+                    return CpdNeighborhood.EastPriceHill;
+                case "EAST WALNUT HILLS":
+                    return CpdNeighborhood.EastWalnutHills;
+                case "ENGLISH  WOODS":
+                    return CpdNeighborhood.EnglishWoods;
+                case "EVANSTON":
+                    return CpdNeighborhood.Evanston;
+                case "FAIRVIEW":
+                    return CpdNeighborhood.Fairview;
+                case "FAY APARTMENTS":
+                    return CpdNeighborhood.FayApartments;
+                case "HARTWELL":
+                    return CpdNeighborhood.Hartwell;
+                case "HYDE PARK":
+                    return CpdNeighborhood.HydePark;
+                case "KENNEDY  HEIGHTS":
+                    return CpdNeighborhood.KennedyHeights;
+                case "LINWOOD":
+                    return CpdNeighborhood.Linwood;
+                case "LOWER PRICE  HILL":
+                    return CpdNeighborhood.LowerPriceHill;
+                case "MADISONVILLE":
+                    return CpdNeighborhood.Madisonville;
+                case "MILLVALE":
+                    return CpdNeighborhood.Millvale;
+                case "MOUNT  ADAMS":
+                    return CpdNeighborhood.MountAdams;
+                case "MOUNT  AUBURN":
+                    return CpdNeighborhood.MountAuburn;
+                case "MOUNT AIRY":
+                    return CpdNeighborhood.MountAiry;
+                case "MT.  LOOKOUT":
+                    return CpdNeighborhood.MtLookout;
+                case "MT.  WASHINGTON":
+                    return CpdNeighborhood.MtWashington;
+                case "NORTH AVONDALE":
+                    return CpdNeighborhood.NorthAvondale;
+                case "NORTH FAIRMOUNT":
+                    return CpdNeighborhood.NorthFairmount;
+                case "NORTHSIDE":
+                    return CpdNeighborhood.Northside;
+                case "O'BRYONVILLE":
+                    return CpdNeighborhood.OBryonville;
+                case "OAKLEY":
+                    return CpdNeighborhood.Oakley;
+                case "OVER-THE-RHINE":
+                    return CpdNeighborhood.OverTheRhine;
+                case "PADDOCK  HILLS":
+                    return CpdNeighborhood.PaddockHills;
+                case "PENDLETON":
+                    return CpdNeighborhood.Pendleton;
+                case "PLEASANT RIDGE":
+                    return CpdNeighborhood.PleasantRidge;
+                case "QUEENSGATE":
+                    return CpdNeighborhood.Queensgate;
+                case "RIVERSIDE":
+                    return CpdNeighborhood.Riverside;
+                case "ROSELAWN":
+                    return CpdNeighborhood.Roselawn;
+                case "S.. CUMMINSVILLE":
+                    return CpdNeighborhood.SCumminsville;
+                case "SAYLER  PARK":
+                    return CpdNeighborhood.SaylerPark;
+                case "SEDAMSVILLE":
+                    return CpdNeighborhood.Sedamsville;
+                case "SOUTH  FAIRMOUNT":
+                    return CpdNeighborhood.SouthFairmount;
+                case "SPRING GROVE VILLAGE":
+                    return CpdNeighborhood.SpringGroveVillage;
+                case "WALNUT HILLS":
+                    return CpdNeighborhood.WalnutHills;
+                case "WEST  END":
+                    return CpdNeighborhood.WestEnd;
+                case "WEST PRICE HILL":
+                    return CpdNeighborhood.WestPriceHill;
+                case "WESTWOOD":
+                    return CpdNeighborhood.Westwood;
+                case "WINTON HILLS":
+                    return CpdNeighborhood.WintonHills;
+            }
+            throw new Exception("Cannot unmarshal type CpdNeighborhood");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (CpdNeighborhood)untypedValue;
+            switch (value)
+            {
+                case CpdNeighborhood.Empty:
+                    serializer.Serialize(writer, "");
+                    return;
+                case CpdNeighborhood.Avondale:
+                    serializer.Serialize(writer, "AVONDALE");
+                    return;
+                case CpdNeighborhood.Bondhill:
+                    serializer.Serialize(writer, "BONDHILL");
+                    return;
+                case CpdNeighborhood.CBDRiverfront:
+                    serializer.Serialize(writer, "C. B. D. / RIVERFRONT");
+                    return;
+                case CpdNeighborhood.California:
+                    serializer.Serialize(writer, "CALIFORNIA");
+                    return;
+                case CpdNeighborhood.CampWashington:
+                    serializer.Serialize(writer, "CAMP  WASHINGTON");
+                    return;
+                case CpdNeighborhood.Carthage:
+                    serializer.Serialize(writer, "CARTHAGE");
+                    return;
+                case CpdNeighborhood.Clifton:
+                    serializer.Serialize(writer, "CLIFTON");
+                    return;
+                case CpdNeighborhood.CliftonUniversityHeights:
+                    serializer.Serialize(writer, "CLIFTON/UNIVERSITY HEIGHTS");
+                    return;
+                case CpdNeighborhood.CollegeHill:
+                    serializer.Serialize(writer, "COLLEGE  HILL");
+                    return;
+                case CpdNeighborhood.ColumbiaTusculum:
+                    serializer.Serialize(writer, "COLUMBIA / TUSCULUM");
+                    return;
+                case CpdNeighborhood.Corryville:
+                    serializer.Serialize(writer, "CORRYVILLE");
+                    return;
+                case CpdNeighborhood.EastEnd:
+                    serializer.Serialize(writer, "EAST  END");
+                    return;
+                case CpdNeighborhood.EastWestwood:
+                    serializer.Serialize(writer, "EAST  WESTWOOD");
+                    return;
+                case CpdNeighborhood.EastPriceHill:
+                    serializer.Serialize(writer, "EAST PRICE HILL");
+                    return;
+                case CpdNeighborhood.EastWalnutHills:
+                    serializer.Serialize(writer, "EAST WALNUT HILLS");
+                    return;
+                case CpdNeighborhood.EnglishWoods:
+                    serializer.Serialize(writer, "ENGLISH  WOODS");
+                    return;
+                case CpdNeighborhood.Evanston:
+                    serializer.Serialize(writer, "EVANSTON");
+                    return;
+                case CpdNeighborhood.Fairview:
+                    serializer.Serialize(writer, "FAIRVIEW");
+                    return;
+                case CpdNeighborhood.FayApartments:
+                    serializer.Serialize(writer, "FAY APARTMENTS");
+                    return;
+                case CpdNeighborhood.Hartwell:
+                    serializer.Serialize(writer, "HARTWELL");
+                    return;
+                case CpdNeighborhood.HydePark:
+                    serializer.Serialize(writer, "HYDE PARK");
+                    return;
+                case CpdNeighborhood.KennedyHeights:
+                    serializer.Serialize(writer, "KENNEDY  HEIGHTS");
+                    return;
+                case CpdNeighborhood.Linwood:
+                    serializer.Serialize(writer, "LINWOOD");
+                    return;
+                case CpdNeighborhood.LowerPriceHill:
+                    serializer.Serialize(writer, "LOWER PRICE  HILL");
+                    return;
+                case CpdNeighborhood.Madisonville:
+                    serializer.Serialize(writer, "MADISONVILLE");
+                    return;
+                case CpdNeighborhood.Millvale:
+                    serializer.Serialize(writer, "MILLVALE");
+                    return;
+                case CpdNeighborhood.MountAdams:
+                    serializer.Serialize(writer, "MOUNT  ADAMS");
+                    return;
+                case CpdNeighborhood.MountAuburn:
+                    serializer.Serialize(writer, "MOUNT  AUBURN");
+                    return;
+                case CpdNeighborhood.MountAiry:
+                    serializer.Serialize(writer, "MOUNT AIRY");
+                    return;
+                case CpdNeighborhood.MtLookout:
+                    serializer.Serialize(writer, "MT.  LOOKOUT");
+                    return;
+                case CpdNeighborhood.MtWashington:
+                    serializer.Serialize(writer, "MT.  WASHINGTON");
+                    return;
+                case CpdNeighborhood.NorthAvondale:
+                    serializer.Serialize(writer, "NORTH AVONDALE");
+                    return;
+                case CpdNeighborhood.NorthFairmount:
+                    serializer.Serialize(writer, "NORTH FAIRMOUNT");
+                    return;
+                case CpdNeighborhood.Northside:
+                    serializer.Serialize(writer, "NORTHSIDE");
+                    return;
+                case CpdNeighborhood.OBryonville:
+                    serializer.Serialize(writer, "O'BRYONVILLE");
+                    return;
+                case CpdNeighborhood.Oakley:
+                    serializer.Serialize(writer, "OAKLEY");
+                    return;
+                case CpdNeighborhood.OverTheRhine:
+                    serializer.Serialize(writer, "OVER-THE-RHINE");
+                    return;
+                case CpdNeighborhood.PaddockHills:
+                    serializer.Serialize(writer, "PADDOCK  HILLS");
+                    return;
+                case CpdNeighborhood.Pendleton:
+                    serializer.Serialize(writer, "PENDLETON");
+                    return;
+                case CpdNeighborhood.PleasantRidge:
+                    serializer.Serialize(writer, "PLEASANT RIDGE");
+                    return;
+                case CpdNeighborhood.Queensgate:
+                    serializer.Serialize(writer, "QUEENSGATE");
+                    return;
+                case CpdNeighborhood.Riverside:
+                    serializer.Serialize(writer, "RIVERSIDE");
+                    return;
+                case CpdNeighborhood.Roselawn:
+                    serializer.Serialize(writer, "ROSELAWN");
+                    return;
+                case CpdNeighborhood.SCumminsville:
+                    serializer.Serialize(writer, "S.. CUMMINSVILLE");
+                    return;
+                case CpdNeighborhood.SaylerPark:
+                    serializer.Serialize(writer, "SAYLER  PARK");
+                    return;
+                case CpdNeighborhood.Sedamsville:
+                    serializer.Serialize(writer, "SEDAMSVILLE");
+                    return;
+                case CpdNeighborhood.SouthFairmount:
+                    serializer.Serialize(writer, "SOUTH  FAIRMOUNT");
+                    return;
+                case CpdNeighborhood.SpringGroveVillage:
+                    serializer.Serialize(writer, "SPRING GROVE VILLAGE");
+                    return;
+                case CpdNeighborhood.WalnutHills:
+                    serializer.Serialize(writer, "WALNUT HILLS");
+                    return;
+                case CpdNeighborhood.WestEnd:
+                    serializer.Serialize(writer, "WEST  END");
+                    return;
+                case CpdNeighborhood.WestPriceHill:
+                    serializer.Serialize(writer, "WEST PRICE HILL");
+                    return;
+                case CpdNeighborhood.Westwood:
+                    serializer.Serialize(writer, "WESTWOOD");
+                    return;
+                case CpdNeighborhood.WintonHills:
+                    serializer.Serialize(writer, "WINTON HILLS");
+                    return;
+            }
+            throw new Exception("Cannot marshal type CpdNeighborhood");
+        }
+
+        public static readonly CpdNeighborhoodConverter Singleton = new CpdNeighborhoodConverter();
+    }
+
+    internal class DayofweekConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(Dayofweek) || t == typeof(Dayofweek?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "":
+                    return Dayofweek.Empty;
+                case "FRIDAY":
+                    return Dayofweek.Friday;
+                case "MONDAY":
+                    return Dayofweek.Monday;
+                case "SATURDAY":
+                    return Dayofweek.Saturday;
+                case "SUNDAY":
+                    return Dayofweek.Sunday;
+                case "THURSDAY":
+                    return Dayofweek.Thursday;
+                case "TUESDAY":
+                    return Dayofweek.Tuesday;
+                case "WEDNESDAY":
+                    return Dayofweek.Wednesday;
+            }
+            throw new Exception("Cannot unmarshal type Dayofweek");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (Dayofweek)untypedValue;
+            switch (value)
+            {
+                case Dayofweek.Empty:
+                    serializer.Serialize(writer, "");
+                    return;
+                case Dayofweek.Friday:
+                    serializer.Serialize(writer, "FRIDAY");
+                    return;
+                case Dayofweek.Monday:
+                    serializer.Serialize(writer, "MONDAY");
+                    return;
+                case Dayofweek.Saturday:
+                    serializer.Serialize(writer, "SATURDAY");
+                    return;
+                case Dayofweek.Sunday:
+                    serializer.Serialize(writer, "SUNDAY");
+                    return;
+                case Dayofweek.Thursday:
+                    serializer.Serialize(writer, "THURSDAY");
+                    return;
+                case Dayofweek.Tuesday:
+                    serializer.Serialize(writer, "TUESDAY");
+                    return;
+                case Dayofweek.Wednesday:
+                    serializer.Serialize(writer, "WEDNESDAY");
+                    return;
+            }
+            throw new Exception("Cannot marshal type Dayofweek");
+        }
+
+        public static readonly DayofweekConverter Singleton = new DayofweekConverter();
+    }
+
+    internal class LocationConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(Location) || t == typeof(Location?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "01-SINGLE FAMILY 2 STORY":
+                    return Location.The01SingleFamily2Story;
+                case "01-SINGLE FAMILY 3 PLUS FLOORS":
+                    return Location.The01SingleFamily3PlusFloors;
+                case "01-SINGLE FAMILY BASEMENT":
+                    return Location.The01SingleFamilyBasement;
+                case "01-SINGLE FAMILY CONDO":
+                    return Location.The01SingleFamilyCondo;
+                case "01-SINGLE FAMILY HOME":
+                    return Location.The01SingleFamilyHome;
+                case "01-SINGLE FAMILY RANCH 1 STORY":
+                    return Location.The01SingleFamilyRanch1Story;
+                case "02-MULTI FAMILY":
+                    return Location.The02MultiFamily;
+                case "02-MULTI FAMILY 4 PLEX":
+                    return Location.The02MultiFamily4Plex;
+                case "02-MULTI FAMILY APARTMENT":
+                    return Location.The02MultiFamilyApartment;
+                case "02-MULTI FAMILY DUPLEX":
+                    return Location.The02MultiFamilyDuplex;
+                case "03-RESIDENTIAL FACILITY":
+                    return Location.The03ResidentialFacility;
+                case "04-OTHER RESIDENTIAL":
+                    return Location.The04OtherResidential;
+                case "05-GARAGE/SHED":
+                    return Location.The05GarageShed;
+                case "06-TRANSIT FACILITY":
+                    return Location.The06TransitFacility;
+                case "07-GOVERNMENT OFFICE":
+                    return Location.The07GovernmentOffice;
+                case "08-SCHOOL":
+                    return Location.The08School;
+                case "09-COLLEGE":
+                    return Location.The09College;
+                case "10-CHURCH":
+                    return Location.The10Church;
+                case "11-HOSPITAL":
+                    return Location.The11Hospital;
+                case "12-JAIL/PRISION":
+                    return Location.The12JailPrision;
+                case "13-PARKING GARAGE":
+                    return Location.The13ParkingGarage;
+                case "14-OTHER PUBLIC ACCESS BUILDING":
+                    return Location.The14OtherPublicAccessBuilding;
+                case "15-AUTO SHOP":
+                    return Location.The15AutoShop;
+                case "16-FINANCIAL INSTITUTION":
+                    return Location.The16FinancialInstitution;
+                case "17-BARBER/BEAUTY SHOP":
+                    return Location.The17BarberBeautyShop;
+                case "18-HOTEL/MOTEL":
+                    return Location.The18HotelMotel;
+                case "19-DRY CLEANERS/LAUNDRY":
+                    return Location.The19DryCleanersLaundry;
+                case "20-PROFESSIONAL OFFICE":
+                    return Location.The20ProfessionalOffice;
+                case "21-DOCTOR'S OFFICE":
+                    return Location.The21DoctorSOffice;
+                case "22-OTHER BUSINESS OFFICE":
+                    return Location.The22OtherBusinessOffice;
+                case "23-AMUSEMENT CENTER":
+                    return Location.The23AmusementCenter;
+                case "23-RECREATION / ENTERTAINMENT CENTER":
+                    return Location.The23RecreationEntertainmentCenter;
+                case "24-RENTAL STORAGE FACILITY":
+                    return Location.The24RentalStorageFacility;
+                case "25-OTHER COMMERCIAL SERVICE LOCATION":
+                    return Location.The25OtherCommercialServiceLocation;
+                case "26-BAR":
+                    return Location.The26Bar;
+                case "27-BUY/SELL/TRADE SHOP":
+                    return Location.The27BuySellTradeShop;
+                case "28-RESTAURANT":
+                    return Location.The28Restaurant;
+                case "29-GAS STATION":
+                    return Location.The29GasStation;
+                case "30-AUTO SALES LOT":
+                    return Location.The30AutoSalesLot;
+                case "31-JEWELRY STORE":
+                    return Location.The31JewelryStore;
+                case "32-CLOTHING STORE":
+                    return Location.The32ClothingStore;
+                case "33-DRUGSTORE":
+                    return Location.The33Drugstore;
+                case "34-LIQUOR STORE":
+                    return Location.The34LiquorStore;
+                case "35-SHOPPING MALL":
+                    return Location.The35ShoppingMall;
+                case "36-SPORTING GOODS":
+                    return Location.The36SportingGoods;
+                case "37-GROCERY/SUPERMARKET":
+                    return Location.The37GrocerySupermarket;
+                case "38-VARIETY/CONVENIENCE STORE":
+                    return Location.The38VarietyConvenienceStore;
+                case "39-DEPARTMENT/DISCOUNT STORE":
+                    return Location.The39DepartmentDiscountStore;
+                case "40-OTHER RETAIL STORE":
+                    return Location.The40OtherRetailStore;
+                case "41-FACTORY/MILL/PLANT":
+                    return Location.The41FactoryMillPlant;
+                case "42-OTHER BUILDING":
+                    return Location.The42OtherBuilding;
+                case "43-YARD":
+                    return Location.The43Yard;
+                case "44-CONSTRUCTION SITE":
+                    return Location.The44ConstructionSite;
+                case "45-LAKE/WATERWAY":
+                    return Location.The45LakeWaterway;
+                case "46-FIELD/WOODS":
+                    return Location.The46FieldWoods;
+                case "47-STREET":
+                    return Location.The47Street;
+                case "48-PARKING LOT":
+                    return Location.The48ParkingLot;
+                case "49-PARK/PLAYGROUND":
+                    return Location.The49ParkPlayground;
+                case "50-CEMETERY":
+                    return Location.The50Cemetery;
+                case "51-PUBLIC TRANSIT VEHICLE":
+                    return Location.The51PublicTransitVehicle;
+                case "52-OTHER OUTSIDE LOCATION":
+                    return Location.The52OtherOutsideLocation;
+                case "53-ABANDONED / CONDEMNED STRUCTURE":
+                    return Location.The53AbandonedCondemnedStructure;
+                case "54-AMUSEMENT PARK":
+                    return Location.The54AmusementPark;
+                case "55-ARENA / STADIUM / FAIRGROUNDS / COLISEUM":
+                    return Location.The55ArenaStadiumFairgroundsColiseum;
+                case "56-ATM MACHINE SEPARATE FROM BANK":
+                    return Location.The56AtmMachineSeparateFromBank;
+                case "58-CARGO CONTAINER":
+                    return Location.The58CargoContainer;
+                case "59-DAYCARE FACILITY":
+                    return Location.The59DaycareFacility;
+                case "60-DOCK / WHART / FREIGHT / MODAL TERMINAL":
+                    return Location.The60DockWhartFreightModalTerminal;
+                case "61-FARM FACILITY":
+                    return Location.The61FarmFacility;
+                case "62-GAMBLING FACILITY / CASINO / RACE TRACK":
+                    return Location.The62GamblingFacilityCasinoRaceTrack;
+                case "65-SHELTER-MISSION / HOMELESS":
+                    return Location.The65ShelterMissionHomeless;
+                case "67-LIBRARY":
+                    return Location.The67Library;
+                case "77-OTHER":
+                    return Location.The77Other;
+            }
+            throw new Exception("Cannot unmarshal type Location");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (Location)untypedValue;
+            switch (value)
+            {
+                case Location.The01SingleFamily2Story:
+                    serializer.Serialize(writer, "01-SINGLE FAMILY 2 STORY");
+                    return;
+                case Location.The01SingleFamily3PlusFloors:
+                    serializer.Serialize(writer, "01-SINGLE FAMILY 3 PLUS FLOORS");
+                    return;
+                case Location.The01SingleFamilyBasement:
+                    serializer.Serialize(writer, "01-SINGLE FAMILY BASEMENT");
+                    return;
+                case Location.The01SingleFamilyCondo:
+                    serializer.Serialize(writer, "01-SINGLE FAMILY CONDO");
+                    return;
+                case Location.The01SingleFamilyHome:
+                    serializer.Serialize(writer, "01-SINGLE FAMILY HOME");
+                    return;
+                case Location.The01SingleFamilyRanch1Story:
+                    serializer.Serialize(writer, "01-SINGLE FAMILY RANCH 1 STORY");
+                    return;
+                case Location.The02MultiFamily:
+                    serializer.Serialize(writer, "02-MULTI FAMILY");
+                    return;
+                case Location.The02MultiFamily4Plex:
+                    serializer.Serialize(writer, "02-MULTI FAMILY 4 PLEX");
+                    return;
+                case Location.The02MultiFamilyApartment:
+                    serializer.Serialize(writer, "02-MULTI FAMILY APARTMENT");
+                    return;
+                case Location.The02MultiFamilyDuplex:
+                    serializer.Serialize(writer, "02-MULTI FAMILY DUPLEX");
+                    return;
+                case Location.The03ResidentialFacility:
+                    serializer.Serialize(writer, "03-RESIDENTIAL FACILITY");
+                    return;
+                case Location.The04OtherResidential:
+                    serializer.Serialize(writer, "04-OTHER RESIDENTIAL");
+                    return;
+                case Location.The05GarageShed:
+                    serializer.Serialize(writer, "05-GARAGE/SHED");
+                    return;
+                case Location.The06TransitFacility:
+                    serializer.Serialize(writer, "06-TRANSIT FACILITY");
+                    return;
+                case Location.The07GovernmentOffice:
+                    serializer.Serialize(writer, "07-GOVERNMENT OFFICE");
+                    return;
+                case Location.The08School:
+                    serializer.Serialize(writer, "08-SCHOOL");
+                    return;
+                case Location.The09College:
+                    serializer.Serialize(writer, "09-COLLEGE");
+                    return;
+                case Location.The10Church:
+                    serializer.Serialize(writer, "10-CHURCH");
+                    return;
+                case Location.The11Hospital:
+                    serializer.Serialize(writer, "11-HOSPITAL");
+                    return;
+                case Location.The12JailPrision:
+                    serializer.Serialize(writer, "12-JAIL/PRISION");
+                    return;
+                case Location.The13ParkingGarage:
+                    serializer.Serialize(writer, "13-PARKING GARAGE");
+                    return;
+                case Location.The14OtherPublicAccessBuilding:
+                    serializer.Serialize(writer, "14-OTHER PUBLIC ACCESS BUILDING");
+                    return;
+                case Location.The15AutoShop:
+                    serializer.Serialize(writer, "15-AUTO SHOP");
+                    return;
+                case Location.The16FinancialInstitution:
+                    serializer.Serialize(writer, "16-FINANCIAL INSTITUTION");
+                    return;
+                case Location.The17BarberBeautyShop:
+                    serializer.Serialize(writer, "17-BARBER/BEAUTY SHOP");
+                    return;
+                case Location.The18HotelMotel:
+                    serializer.Serialize(writer, "18-HOTEL/MOTEL");
+                    return;
+                case Location.The19DryCleanersLaundry:
+                    serializer.Serialize(writer, "19-DRY CLEANERS/LAUNDRY");
+                    return;
+                case Location.The20ProfessionalOffice:
+                    serializer.Serialize(writer, "20-PROFESSIONAL OFFICE");
+                    return;
+                case Location.The21DoctorSOffice:
+                    serializer.Serialize(writer, "21-DOCTOR'S OFFICE");
+                    return;
+                case Location.The22OtherBusinessOffice:
+                    serializer.Serialize(writer, "22-OTHER BUSINESS OFFICE");
+                    return;
+                case Location.The23AmusementCenter:
+                    serializer.Serialize(writer, "23-AMUSEMENT CENTER");
+                    return;
+                case Location.The23RecreationEntertainmentCenter:
+                    serializer.Serialize(writer, "23-RECREATION / ENTERTAINMENT CENTER");
+                    return;
+                case Location.The24RentalStorageFacility:
+                    serializer.Serialize(writer, "24-RENTAL STORAGE FACILITY");
+                    return;
+                case Location.The25OtherCommercialServiceLocation:
+                    serializer.Serialize(writer, "25-OTHER COMMERCIAL SERVICE LOCATION");
+                    return;
+                case Location.The26Bar:
+                    serializer.Serialize(writer, "26-BAR");
+                    return;
+                case Location.The27BuySellTradeShop:
+                    serializer.Serialize(writer, "27-BUY/SELL/TRADE SHOP");
+                    return;
+                case Location.The28Restaurant:
+                    serializer.Serialize(writer, "28-RESTAURANT");
+                    return;
+                case Location.The29GasStation:
+                    serializer.Serialize(writer, "29-GAS STATION");
+                    return;
+                case Location.The30AutoSalesLot:
+                    serializer.Serialize(writer, "30-AUTO SALES LOT");
+                    return;
+                case Location.The31JewelryStore:
+                    serializer.Serialize(writer, "31-JEWELRY STORE");
+                    return;
+                case Location.The32ClothingStore:
+                    serializer.Serialize(writer, "32-CLOTHING STORE");
+                    return;
+                case Location.The33Drugstore:
+                    serializer.Serialize(writer, "33-DRUGSTORE");
+                    return;
+                case Location.The34LiquorStore:
+                    serializer.Serialize(writer, "34-LIQUOR STORE");
+                    return;
+                case Location.The35ShoppingMall:
+                    serializer.Serialize(writer, "35-SHOPPING MALL");
+                    return;
+                case Location.The36SportingGoods:
+                    serializer.Serialize(writer, "36-SPORTING GOODS");
+                    return;
+                case Location.The37GrocerySupermarket:
+                    serializer.Serialize(writer, "37-GROCERY/SUPERMARKET");
+                    return;
+                case Location.The38VarietyConvenienceStore:
+                    serializer.Serialize(writer, "38-VARIETY/CONVENIENCE STORE");
+                    return;
+                case Location.The39DepartmentDiscountStore:
+                    serializer.Serialize(writer, "39-DEPARTMENT/DISCOUNT STORE");
+                    return;
+                case Location.The40OtherRetailStore:
+                    serializer.Serialize(writer, "40-OTHER RETAIL STORE");
+                    return;
+                case Location.The41FactoryMillPlant:
+                    serializer.Serialize(writer, "41-FACTORY/MILL/PLANT");
+                    return;
+                case Location.The42OtherBuilding:
+                    serializer.Serialize(writer, "42-OTHER BUILDING");
+                    return;
+                case Location.The43Yard:
+                    serializer.Serialize(writer, "43-YARD");
+                    return;
+                case Location.The44ConstructionSite:
+                    serializer.Serialize(writer, "44-CONSTRUCTION SITE");
+                    return;
+                case Location.The45LakeWaterway:
+                    serializer.Serialize(writer, "45-LAKE/WATERWAY");
+                    return;
+                case Location.The46FieldWoods:
+                    serializer.Serialize(writer, "46-FIELD/WOODS");
+                    return;
+                case Location.The47Street:
+                    serializer.Serialize(writer, "47-STREET");
+                    return;
+                case Location.The48ParkingLot:
+                    serializer.Serialize(writer, "48-PARKING LOT");
+                    return;
+                case Location.The49ParkPlayground:
+                    serializer.Serialize(writer, "49-PARK/PLAYGROUND");
+                    return;
+                case Location.The50Cemetery:
+                    serializer.Serialize(writer, "50-CEMETERY");
+                    return;
+                case Location.The51PublicTransitVehicle:
+                    serializer.Serialize(writer, "51-PUBLIC TRANSIT VEHICLE");
+                    return;
+                case Location.The52OtherOutsideLocation:
+                    serializer.Serialize(writer, "52-OTHER OUTSIDE LOCATION");
+                    return;
+                case Location.The53AbandonedCondemnedStructure:
+                    serializer.Serialize(writer, "53-ABANDONED / CONDEMNED STRUCTURE");
+                    return;
+                case Location.The54AmusementPark:
+                    serializer.Serialize(writer, "54-AMUSEMENT PARK");
+                    return;
+                case Location.The55ArenaStadiumFairgroundsColiseum:
+                    serializer.Serialize(writer, "55-ARENA / STADIUM / FAIRGROUNDS / COLISEUM");
+                    return;
+                case Location.The56AtmMachineSeparateFromBank:
+                    serializer.Serialize(writer, "56-ATM MACHINE SEPARATE FROM BANK");
+                    return;
+                case Location.The58CargoContainer:
+                    serializer.Serialize(writer, "58-CARGO CONTAINER");
+                    return;
+                case Location.The59DaycareFacility:
+                    serializer.Serialize(writer, "59-DAYCARE FACILITY");
+                    return;
+                case Location.The60DockWhartFreightModalTerminal:
+                    serializer.Serialize(writer, "60-DOCK / WHART / FREIGHT / MODAL TERMINAL");
+                    return;
+                case Location.The61FarmFacility:
+                    serializer.Serialize(writer, "61-FARM FACILITY");
+                    return;
+                case Location.The62GamblingFacilityCasinoRaceTrack:
+                    serializer.Serialize(writer, "62-GAMBLING FACILITY / CASINO / RACE TRACK");
+                    return;
+                case Location.The65ShelterMissionHomeless:
+                    serializer.Serialize(writer, "65-SHELTER-MISSION / HOMELESS");
+                    return;
+                case Location.The67Library:
+                    serializer.Serialize(writer, "67-LIBRARY");
+                    return;
+                case Location.The77Other:
+                    serializer.Serialize(writer, "77-OTHER");
+                    return;
+            }
+            throw new Exception("Cannot marshal type Location");
+        }
+
+        public static readonly LocationConverter Singleton = new LocationConverter();
     }
 
     internal class ParseStringConverter : JsonConverter
@@ -87,7 +1242,7 @@ namespace QuickType
                 return l;
             }
             throw new Exception("Cannot unmarshal type long");
-        } 
+        }
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
         {
@@ -102,5 +1257,5 @@ namespace QuickType
         }
 
         public static readonly ParseStringConverter Singleton = new ParseStringConverter();
-    } 
+    }
 }

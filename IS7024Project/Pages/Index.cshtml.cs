@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using QuickType;
+using QuickTypeParks;
 
 namespace IS7024Project.Pages
 {
@@ -25,12 +26,16 @@ namespace IS7024Project.Pages
         {
             using(var webClient = new WebClient())
             {
+                //Consuming Parks data
+                string parksJSON = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/Parks_Data.txt");
+                var park = Parks.FromJson(parksJSON);
+                ViewData["Parks"] = park;
+                QuickTypeParks.Parks[] Parksparks = QuickTypeParks.Parks.FromJson(parksJSON);
+
+
+                //Consuming Crime data
                 string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");
-                
-                
-                    var crime = Crime.FromJson(jsonString);
-                   
-                
+                var crime = Crime.FromJson(jsonString);
                 ViewData["Crime"] = crime;
             }
            
