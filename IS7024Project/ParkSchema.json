@@ -1,0 +1,75 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/WelcomeElement"
+  },
+  "definitions": {
+    "WelcomeElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ACRES": {
+          "type": "string"
+        },
+        "COUNTY": {
+          "$ref": "#/definitions/County"
+        },
+        "GLOBALID": {
+          "type": "string"
+        },
+        "NAME": {
+          "type": "string"
+        },
+        "PARKTYPE": {
+          "$ref": "#/definitions/Parktype"
+        },
+        "SHORT_NAME": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ACRES",
+        "COUNTY",
+        "GLOBALID",
+        "NAME",
+        "PARKTYPE",
+        "SHORT_NAME"
+      ],
+      "title": "WelcomeElement"
+    },
+    "County": {
+      "type": "string",
+      "enum": [
+        "Kenton",
+        "Hamilton",
+        "Clermont",
+        "Campbell",
+        "Butler",
+        "Dearborn",
+        "Warren",
+        "Boone",
+        "Clinton",
+        "Preble",
+        "Kentucky",
+        "Greene"
+      ],
+      "title": "County"
+    },
+    "Parktype": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Conservation Groups",
+        "City or Village",
+        "Park District",
+        "Township",
+        "Conservancy District",
+        "Institutional",
+        "State",
+        "Industrial"
+      ],
+      "title": "Parktype"
+    }
+  }
+}
