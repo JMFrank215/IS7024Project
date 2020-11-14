@@ -2,7 +2,7 @@
 //
 // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
 //
-//    using QuickType;
+//    using QuickType; ????
 //
 //    var crime = Crime.FromJson(jsonString);
 
@@ -87,7 +87,7 @@ namespace QuickType
                 return l;
             }
             throw new Exception("Cannot unmarshal type long");
-        }
+        } 
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
         {
@@ -102,5 +102,5 @@ namespace QuickType
         }
 
         public static readonly ParseStringConverter Singleton = new ParseStringConverter();
-    }
+    } 
 }
