@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    var crimes = (QuickType.Crime[]) ViewData["Crime"];
+    var crimes = (QuickTypeCrime.Crime[]) ViewData["Crime"];
     var parks = (QuickTypeParks.Parks[]) ViewData["Parks"];
 }
 <!-- Image over text help found at: https://css-tricks.com/text-blocks-over-image/ -->
@@ -93,7 +93,7 @@
     <table border="1" width="90%">
         <tr><th>Incident #</th><th>Offense</th><th>Location</th><th>Date</th><th>Day of Week</th><th>CC Neighborhood</th><th>CPD Neighborhood</th><th>Latitude</th><th>Longitude</th><th>Zip</th></tr>
         @{
-            foreach (QuickType.Crime crime in crimes)
+            foreach (QuickTypeCrime.Crime crime in crimes)
             {
                 <tr>
                     <td>@crime.IncidentNo</td>

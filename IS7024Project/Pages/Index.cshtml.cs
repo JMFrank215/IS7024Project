@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
-using QuickType;
 using QuickTypeParks;
+using QuickTypeCrime;
 
 namespace IS7024Project.Pages
 {
@@ -37,6 +37,7 @@ namespace IS7024Project.Pages
                 string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");
                 var crime = Crime.FromJson(jsonString);
                 ViewData["Crime"] = crime;
+                QuickTypeCrime.Crime[] Crime1 = QuickTypeCrime.Crime.FromJson(parksJSON);
             }
            
 
