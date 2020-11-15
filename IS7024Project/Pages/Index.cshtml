@@ -34,6 +34,7 @@
             top: 200px;
             left: 0;
             width: 100%;
+            padding-top: 250px
         }
 
             h3 span {
@@ -56,7 +57,7 @@
         <img src="https://cdn.vox-cdn.com/thumbor/m-gGy-XSLGJQrRmIIx86dtqdjQ4=/0x0:4431x2954/820x461/filters:focal(1030x1360:1738x2068):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/66732472/GettyImages_1209347829.0.jpg" class="text-center" alt="Park" height="600" width="1100" />
         <h2><span>The great outdoors just got better.</span></h2>
 
-        <h3><span><br /><br /><br /><br /><br />At Cincy Safe Space, we're committed to making sure Cincinnati-area residents and their families feel safe and comfortable during their trips to out city's parks. Use our search tool to find out how safe your park's neighborhood is, and never stress about another park visit again!</span></h3>
+        <h3><span>At Cincy Safe Space, we're committed to making sure Cincinnati-area residents and their families feel safe and comfortable during their trips to out city's parks. Use our search tool to find out how safe your park's neighborhood is, and never stress about another park visit again!</span></h3>
 
     </div>
     <div class="container">
@@ -91,7 +92,15 @@
         </div>
     </div>
     <table border="1" width="90%">
-        <tr><th>Incident #</th><th>Offense</th><th>Location</th><th>Date</th><th>Day of Week</th><th>CC Neighborhood</th><th>CPD Neighborhood</th><th>Latitude</th><th>Longitude</th><th>Zip</th></tr>
+        <tr>
+            <th>Incident #</th>
+            <th>Offense</th>
+            <th>Location</th><th>Date</th>
+            <th>Day of Week</th><th>CC Neighborhood</th>
+            <th>CPD Neighborhood</th><th>Latitude</th>
+            <th>Longitude</th>
+            <th>Zip</th>
+        </tr>
         @{
             foreach (QuickType.Crime crime in crimes)
             {
@@ -112,7 +121,14 @@
     </table>
     <div style="padding-top: 20px">
         <table border="1" width="90%">
-            <tr><th>Global ID</th><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th></tr>
+            <tr>
+                <th>Global ID</th>
+                <th>Name</th>
+                <th>Short Name</th>
+                <th>Park Type</th>
+                <th>County</th>
+                <th>Acres</th>
+            </tr>
             @{
                 foreach (QuickTypeParks.Parks park in parks)
                 {

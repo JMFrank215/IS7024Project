@@ -1,0 +1,674 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "crs": {
+                    "$ref": "#/definitions/CRS"
+                },
+                "features": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Feature"
+                    }
+                }
+            },
+            "required": [
+                "crs",
+                "features",
+                "name",
+                "type"
+            ],
+            "title": "Welcome"
+        },
+        "CRS": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/CRSProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "CRS"
+        },
+        "CRSProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "CRSProperties"
+        },
+        "Feature": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/FeatureType"
+                },
+                "properties": {
+                    "$ref": "#/definitions/FeatureProperties"
+                },
+                "geometry": {
+                    "$ref": "#/definitions/Geometry"
+                }
+            },
+            "required": [
+                "geometry",
+                "properties",
+                "type"
+            ],
+            "title": "Feature"
+        },
+        "Geometry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/GeometryType"
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Coordinate"
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "coordinates",
+                "type"
+            ],
+            "title": "Geometry"
+        },
+        "FeatureProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "NAME": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "SHORT_NAME": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "PARKTYPE": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Parktype"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "COUNTY": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/County"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "CREATOR": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Creator"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "MANAGER_NA": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "SITE_CITY": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "SITE_PHONE": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "SITE_BOOK": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "UNK_SITES": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "COMPLETED": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "OWNER": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "OWNER2": {
+                    "$ref": "#/definitions/OWNER2Union"
+                },
+                "EST_ACRES": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "ACRES": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "AGENCY": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "RECNO": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "LINKED": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "CLASS": {
+                    "$ref": "#/definitions/CLASSUnion"
+                },
+                "SHOW": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "DISTRICT_N": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/DistrictN"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "OBJECTID": {
+                    "type": "integer"
+                },
+                "PARK_NUMBER": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "OWNERSHIP": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "VERIFIED": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Verified"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "SITE_ADDRESS": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "SITE_ZIPCODE": {
+                    "$ref": "#/definitions/SITEZIPCODEUnion"
+                },
+                "SITE_COMMENT": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "STATE_NUMBER": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "PARCELID": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Parcelid"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "GLOBALID": {
+                    "type": "string"
+                },
+                "SHAPEAREA": {
+                    "type": "integer"
+                },
+                "SHAPELEN": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "ACRES",
+                "AGENCY",
+                "CLASS",
+                "COMPLETED",
+                "COUNTY",
+                "CREATOR",
+                "DISTRICT_N",
+                "EST_ACRES",
+                "GLOBALID",
+                "LINKED",
+                "MANAGER_NA",
+                "NAME",
+                "OBJECTID",
+                "OWNER",
+                "OWNER2",
+                "OWNERSHIP",
+                "PARCELID",
+                "PARKTYPE",
+                "PARK_NUMBER",
+                "RECNO",
+                "SHAPEAREA",
+                "SHAPELEN",
+                "SHORT_NAME",
+                "SHOW",
+                "SITE_ADDRESS",
+                "SITE_BOOK",
+                "SITE_CITY",
+                "SITE_COMMENT",
+                "SITE_PHONE",
+                "SITE_ZIPCODE",
+                "STATE_NUMBER",
+                "UNK_SITES",
+                "VERIFIED"
+            ],
+            "title": "FeatureProperties"
+        },
+        "Coordinate": {
+            "anyOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                {
+                    "type": "number"
+                }
+            ],
+            "title": "Coordinate"
+        },
+        "CLASSUnion": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/CLASSEnum"
+                },
+                {
+                    "type": "string",
+                    "format": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "title": "CLASSUnion"
+        },
+        "OWNER2Union": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/OWNER2Enum"
+                },
+                {
+                    "type": "string",
+                    "format": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "title": "OWNER2Union"
+        },
+        "SITEZIPCODEUnion": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/SITEZIPCODEEnum"
+                },
+                {
+                    "type": "string",
+                    "format": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "title": "SITEZIPCODEUnion"
+        },
+        "GeometryType": {
+            "type": "string",
+            "enum": [
+                "Polygon",
+                "MultiPolygon"
+            ],
+            "title": "GeometryType"
+        },
+        "CLASSEnum": {
+            "type": "string",
+            "enum": [
+                " ",
+                "X",
+                "R",
+                "x"
+            ],
+            "title": "CLASSEnum"
+        },
+        "County": {
+            "type": "string",
+            "enum": [
+                "Butler",
+                "Campbell",
+                "Greene",
+                "Kenton",
+                "Clermont",
+                "Warren",
+                "Boone",
+                "Montgomery",
+                "Indiana",
+                "Clinton",
+                "Dearborn",
+                "Preble",
+                "BUtler",
+                "kentucky",
+                "Hamilton",
+                " "
+            ],
+            "title": "County"
+        },
+        "Creator": {
+            "type": "string",
+            "enum": [
+                " ",
+                "Dig",
+                "RHJ",
+                "B W",
+                "ZZ",
+                "D N",
+                "J H",
+                "kdn",
+                "DNG",
+                "NAD",
+                "D_G",
+                "YS"
+            ],
+            "title": "Creator"
+        },
+        "DistrictN": {
+            "type": "string",
+            "enum": [
+                " ",
+                "MIDDLETOWN CORP CSD",
+                "ROSS TWP ROSS LSD"
+            ],
+            "title": "DistrictN"
+        },
+        "OWNER2Enum": {
+            "type": "string",
+            "enum": [
+                " ",
+                "WASHINGTON TOWNSHIP",
+                "COMMISSIONERS",
+                "CLERMONT COUNTY PUBLIC LI",
+                "OF TRUSTEES",
+                "WEST CLERMONT",
+                "SCHOOL BD OF EDUCATION",
+                "NEW RICHMOND EXEMPTED VIL",
+                "COUNTY COMMISSIONERS",
+                "OF COMMISSIONERS",
+                "EXEMPTED VILLAGE SCHOOL D",
+                "SCHOOL DIST CLER CO OH",
+                "C/O PHILIP O BROWN",
+                "MIAMI TOWNSHIP",
+                "VILLAGE SCHOOL DISTRICT",
+                "MONROE TOWNSHIP OHIO",
+                "C/O DONNA HUSTON",
+                "JOINT VOCATIONAL",
+                "DISTRICT BD OF EDUCATION",
+                "ASSOC INC",
+                "MILFORD EXEMPTED VILLAGE",
+                "EXEMPTED VILLAGE SCHOOLS",
+                "CITY FINANCE DRIECTOR",
+                "DEPT OF NATURAL RESOURCES",
+                "JACKSON TWP TRS",
+                "RICHMOND EXEMPTED VILL SC",
+                "done",
+                "TRUSTEES",
+                "CEMETARY GREEN MOUND",
+                "New 2008",
+                "done\r\n"
+            ],
+            "title": "OWNER2Enum"
+        },
+        "Parcelid": {
+            "type": "string",
+            "enum": [
+                " ",
+                "Q65E182400203",
+                "K46W283200264",
+                "Q65E222400891"
+            ],
+            "title": "Parcelid"
+        },
+        "Parktype": {
+            "type": "string",
+            "enum": [
+                "City or Village",
+                "Schools Public",
+                "State",
+                "Cemetery",
+                "Private Commercial",
+                "Unknown",
+                "Nonprofit",
+                "Airport",
+                "Home Owners Assoc",
+                "Park District",
+                "Federal",
+                "County Government",
+                "Clubs-Members Only",
+                "Schools Private",
+                "Conservancy District",
+                "Church",
+                "Township",
+                "Conservation Groups",
+                "Institutional",
+                "Other Private",
+                "Clubs-Members Only!",
+                " ",
+                "Non Profit",
+                "Industrial",
+                "Private",
+                "Churches",
+                "Schools-Public",
+                "HOA",
+                "School Private"
+            ],
+            "title": "Parktype"
+        },
+        "SITEZIPCODEEnum": {
+            "type": "string",
+            "enum": [
+                " ",
+                "Unknown",
+                "45204 ",
+                "45223 ",
+                "45206 ",
+                "45225 ",
+                "45214 "
+            ],
+            "title": "SITEZIPCODEEnum"
+        },
+        "Verified": {
+            "type": "string",
+            "enum": [
+                " ",
+                "RHJ",
+                "Y",
+                "E R",
+                "G_G",
+                "Tru"
+            ],
+            "title": "Verified"
+        },
+        "FeatureType": {
+            "type": "string",
+            "enum": [
+                "Feature"
+            ],
+            "title": "FeatureType"
+        }
+    }
+}
