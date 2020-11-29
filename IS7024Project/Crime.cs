@@ -6,7 +6,9 @@
 //
 //    var crime = Crime.FromJson(jsonString);
 
-namespace QuickTypeCrime
+
+namespace CrimeSpace
+
 {
     using System;
     using System.Collections.Generic;
@@ -59,12 +61,12 @@ namespace QuickTypeCrime
 
     public partial class Crime
     {
-        public static Crime[] FromJson(string json) => JsonConvert.DeserializeObject<Crime[]>(json, QuickTypeCrime.Converter.Settings);
+        public static Crime[] FromJson(string json) => JsonConvert.DeserializeObject<Crime[]>(json, CrimeSpace.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Crime[] self) => JsonConvert.SerializeObject(self, QuickTypeCrime.Converter.Settings);
+        public static string ToJson(this Crime[] self) => JsonConvert.SerializeObject(self, CrimeSpace.Converter.Settings);
     }
 
     internal static class Converter

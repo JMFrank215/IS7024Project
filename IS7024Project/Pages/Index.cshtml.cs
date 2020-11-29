@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
-using QuickTypeParks;
-using QuickTypeCrime;
+using CrimeSpace;
+using ParkSpace;
 
 namespace IS7024Project.Pages
 {
@@ -30,16 +30,33 @@ namespace IS7024Project.Pages
                 string parksJSON = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/Parks_Data.txt");
                 var park = Parks.FromJson(parksJSON);
                 ViewData["Parks"] = park;
-                QuickTypeParks.Parks[] Parksparks = QuickTypeParks.Parks.FromJson(parksJSON);
+                ParkSpace.Parks[] Parksparks = ParkSpace.Parks.FromJson(parksJSON);
+                
+               
+               
+
+
 
 
                 //Consuming Crime data
-                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");
-                var crime = Crime.FromJson(jsonString);
-                ViewData["Crime"] = crime;
-                QuickTypeCrime.Crime[] Crime1 = QuickTypeCrime.Crime.FromJson(parksJSON);
+                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt")                
+
+
+                //Validation received data
+                string crimeschema = System.IO.File.ReadAllText("CrimeSchema.json");
+                JSchema cschema = JSchema.Parse(crimeschema);
+               
+                JArray cjsonObject = JArray.Parse(jsonString);
+
+                if (cjsonObject.IsValid(cschema))
+                {
+                    var crime = Crime.FromJson(jsonString);
+                    ViewData["Crime"] = crime;
+                    
+                }
+
             }
-           
+            
 
         }
     }

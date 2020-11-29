@@ -6,7 +6,7 @@
 //
 //    var parks = Parks.FromJson(jsonString);
 
-namespace QuickTypeParks
+namespace ParkSpace
 {
     using System;
     using System.Collections.Generic;
@@ -42,12 +42,12 @@ namespace QuickTypeParks
 
     public partial class Parks
     {
-        public static Parks[] FromJson(string json) => JsonConvert.DeserializeObject<Parks[]>(json, QuickTypeParks.Converter.Settings);
+        public static Parks[] FromJson(string json) => JsonConvert.DeserializeObject<Parks[]>(json, ParkSpace.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Parks[] self) => JsonConvert.SerializeObject(self, QuickTypeParks.Converter.Settings);
+        public static string ToJson(this Parks[] self) => JsonConvert.SerializeObject(self, ParkSpace.Converter.Settings);
     }
 
     internal static class Converter
