@@ -1,4 +1,9 @@
-﻿.image {
+﻿body {
+    background-color: #FFFFFF;
+    /*currently white on all other stylesheets but here to ensure it does not change*/
+}
+
+.image {
     position: relative;
     width: 100%;
 }
@@ -35,3 +40,8 @@ h3 {
         background: rgba(0, 30, 0, 0.8);
         padding: 11px;
     }
+
+#printonly {
+    display: block;
+    font: bold 45px/45px Helvetica, Sans-Serif;
+}

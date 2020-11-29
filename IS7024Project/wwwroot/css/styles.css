@@ -35,3 +35,7 @@ h3 {
         background: rgba(0, 30, 0, 0.8);
         padding: 11px;
     }
+
+#printonly {
+    display: none;
+}
