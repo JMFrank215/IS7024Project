@@ -24,7 +24,7 @@ namespace IS7024Project.Pages
 
         public void OnGet()
         {
-            using(var webClient = new WebClient())
+            using (var webClient = new WebClient())
             {
                 //Consuming Parks data
                 string crimesJSON = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/Parks_Data.txt");
@@ -34,24 +34,24 @@ namespace IS7024Project.Pages
 
 
                 //Consuming Crime data
-                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");                
+                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");
 
 
                 //Validation received data
                 string crimeschema = System.IO.File.ReadAllText("CrimeSchema.json");
                 JSchema cschema = JSchema.Parse(crimeschema);
-               
+
                 JArray cjsonObject = JArray.Parse(jsonString);
 
                 if (cjsonObject.IsValid(cschema))
                 {
                     var crimes = Crime.FromJson(jsonString);
                     ViewData["Crime"] = crimes;
-                    
+
                 }
 
             }
-            
+
 
         }
     }
