@@ -92,7 +92,18 @@
         </div>
     </div>
     <table border="1" width="90%">
-        <tr><th>Incident #</th><th>Offense</th><th>Location</th><th>Date</th><th>Day of Week</th><th>CC Neighborhood</th><th>CPD Neighborhood</th><th>Latitude</th><th>Longitude</th><th>Zip</th></tr>
+        <tr>
+            <th>Incident #</th>
+            <th>Offense</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Day of Week</th>
+            <th>CC Neighborhood</th>
+            <th>CPD Neighborhood</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Zip</th>
+        </tr>
         @{
             foreach (CrimeSpace.Crime crime in crimes)
             {
