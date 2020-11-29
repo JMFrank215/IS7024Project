@@ -31,15 +31,15 @@ namespace IS7024Project.Pages
                 var park = Parks.FromJson(parksJSON);
                 ViewData["Parks"] = park;
                 ParkSpace.Parks[] Parksparks = ParkSpace.Parks.FromJson(parksJSON);
-                
-               
-               
+
+
+
 
 
 
 
                 //Consuming Crime data
-                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt")                
+                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");                
 
 
                 //Validation received data
