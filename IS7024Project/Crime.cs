@@ -6,7 +6,9 @@
 //
 //    var crime = Crime.FromJson(jsonString);
 
+
 namespace CrimeSpace
+
 {
     using System;
     using System.Collections.Generic;

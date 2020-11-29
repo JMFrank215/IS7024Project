@@ -39,9 +39,7 @@ namespace IS7024Project.Pages
 
 
                 //Consuming Crime data
-                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt");
-                
-                
+                string jsonString = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/PDI_Crime_Data.txt")                
 
 
                 //Validation received data
