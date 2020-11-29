@@ -27,15 +27,10 @@ namespace IS7024Project.Pages
             using(var webClient = new WebClient())
             {
                 //Consuming Parks data
-                string parksJSON = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/Parks_Data.txt");
-                var park = Parks.FromJson(parksJSON);
-                ViewData["Parks"] = park;
-                ParkSpace.Parks[] Parksparks = ParkSpace.Parks.FromJson(parksJSON);
-
-
-
-
-
+                string crimesJSON = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/Parks_Data.txt");
+                var parks = Parks.FromJson(crimesJSON);
+                ViewData["Parks"] = parks;
+                ParkSpace.Parks[] Parksparks = ParkSpace.Parks.FromJson(crimesJSON);
 
 
                 //Consuming Crime data
@@ -50,8 +45,8 @@ namespace IS7024Project.Pages
 
                 if (cjsonObject.IsValid(cschema))
                 {
-                    var crime = Crime.FromJson(jsonString);
-                    ViewData["Crime"] = crime;
+                    var crimes = Crime.FromJson(jsonString);
+                    ViewData["Crime"] = crimes;
                     
                 }
 

@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Text.RegularExpressions
 @model IndexModel
 @{
     var crimes = (CrimeSpace.Crime[]) ViewData["Crime"];
@@ -87,7 +88,7 @@
             <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6935" class="card-img-top" />
             <div class="card-body">
                 <h1 class="card-title text-center text-white"><span class="badge badge-success text-center"<strong>Search by Area</strong></span></h1>
-                <p class="card-text">Enter your search terms below to view parks in your area and the associated crima reports for that area.</p>
+                <p class="card-text">Enter your search terms below to view parks in your area and the associated crime reports for that area.</p>
             </div>
         </div>
     </div>
@@ -98,7 +99,7 @@
             <th>Location</th>
             <th>Date</th>
             <th>Day of Week</th>
-            <th>CC Neighborhood</th>
+            <th>Community Council Neighborhood</th>
             <th>CPD Neighborhood</th>
             <th>Latitude</th>
             <th>Longitude</th>
@@ -110,11 +111,11 @@
                 <tr>
                     <td>@crime.IncidentNo</td>
                     <td>@crime.Offense</td>
-                    <td>@crime.Location</td>
+                    <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
                     <td>@crime.DateFrom</td>
                     <td>@crime.Dayofweek</td>
-                    <td>@crime.CommunityCouncilNeighborhood</td>
-                    <td>@crime.CpdNeighborhood</td>
+                    <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
                     <td>@crime.LatitudeX</td>
                     <td>@crime.LongitudeX</td>
                     <td>@crime.Zip</td>
