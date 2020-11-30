@@ -68,6 +68,22 @@
         </div>
     </div>
 
+    <div>
+        <input type="search" id="mySearch" placeholder="Searching for a neighborhood..">
+
+        <p>Please enter a neighborhood.</p>
+
+        <button onclick="myFunction()">Click enter</button>
+
+        <p id="demo"></p>
+
+        <script>
+            function myFunction() {
+                var x = document.getElementById("mySearch").placeholder;
+                document.getElementById("demo").innerHTML = x;
+            }
+        </script>
+    </div>
 
     <div class="pagination">
         <ul>
@@ -99,18 +115,18 @@
         @{
             foreach (CrimeSpace.Crime crime in crimes)
             {
-            <tr>
-                <td>@crime.IncidentNo</td>
-                <td>@crime.Offense</td>
-                <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
-                <td>@crime.DateFrom</td>
-                <td>@crime.Dayofweek</td>
-                <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                <td>@crime.LatitudeX</td>
-                <td>@crime.LongitudeX</td>
-                <td>@crime.Zip</td>
-            </tr>
+                <tr>
+                    <td>@crime.IncidentNo</td>
+                    <td>@crime.Offense</td>
+                    <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@crime.DateFrom</td>
+                    <td>@crime.Dayofweek</td>
+                    <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@crime.LatitudeX</td>
+                    <td>@crime.LongitudeX</td>
+                    <td>@crime.Zip</td>
+                </tr>
             }
         }
     </table>
@@ -127,14 +143,14 @@
             @{
                 foreach (ParkSpace.Parks park in parks)
                 {
-                <tr>
-                    <td>@park.Globalid</td>
-                    <td>@park.Name</td>
-                    <td>@park.ShortName</td>
-                    <td>@park.Parktype</td>
-                    <td>@park.County</td>
-                    <td>@park.Acres</td>
-                </tr>
+                    <tr>
+                        <td>@park.Globalid</td>
+                        <td>@park.Name</td>
+                        <td>@park.ShortName</td>
+                        <td>@park.Parktype</td>
+                        <td>@park.County</td>
+                        <td>@park.Acres</td>
+                    </tr>
                 }
             }
         </table>
