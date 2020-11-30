@@ -47,15 +47,22 @@
                 <p>Information from the City of Cincinnati's Police Data Initiative has been gathered to give you an updated report of crime incidents happening near your park of choice.</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm text-center">
+                <h4><span class="badge badge badge-success">Cincinnati Park Data</span></h4>
+            </div>
+            <div class="col-sm text-center">
+                <h4><span class="badge badge badge-success">PDI Crime Data</span></h4>
+            </div>
+        </div>
     </div>
 
-    <!-- COMMENTED OUT FOR NOW
+    
     <form name="search" method="get" action="https://www.wolframalpha.com/input/">
         <label for="i=ZIP+code+">Zip Code: </label><input type="text" name="i=ZIP+code+" />
         <br />
         <input type="submit" value="Search" />
-    </form>
-    -->
+    </form>    
 
 
     <div class="card-deck">
@@ -68,57 +75,6 @@
         </div>
     </div>
 
-
-
-    <table border="1" width="90%">
-        <tr>
-            <th>Incident #</th>
-            <th>Offense</th>
-            <th>Location</th>
-            <th>Date</th>
-            <th>Day of Week</th>
-            <th>Community Council Neighborhood</th>
-            <th>CPD Neighborhood</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Zip</th>
-        </tr>
-        @{
-            foreach (CrimeSpace.Crime crime in crimes)
-            {
-            <tr>
-                <td>@crime.IncidentNo</td>
-                <td>@crime.Offense</td>
-                <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
-                <td>@crime.DateFrom</td>
-                <td>@crime.Dayofweek</td>
-                <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                <td>@crime.LatitudeX</td>
-                <td>@crime.LongitudeX</td>
-                <td>@crime.Zip</td>
-            </tr>
-            }
-        }
-    </table>
-    <div style="padding-top: 20px">
-        <table border="1" width="90%">
-            <tr><th>Global ID</th><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th></tr>
-            @{
-                foreach (ParkSpace.Parks park in parks)
-                {
-                <tr>
-                    <td>@park.Globalid</td>
-                    <td>@park.Name</td>
-                    <td>@park.ShortName</td>
-                    <td>@park.Parktype</td>
-                    <td>@park.County</td>
-                    <td>@park.Acres</td>
-                </tr>
-                }
-            }
-        </table>
-    </div>
     <div id="printonly">
         Sources: https://data-cagisportal.opendata.arcgis.com/, https://data.cincinnati-oh.gov/
     </div>
