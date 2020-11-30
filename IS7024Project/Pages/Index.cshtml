@@ -48,6 +48,16 @@
             </div>
         </div>
     </div>
+
+    <!-- COMMENTED OUT FOR NOW
+    <form name="search" method="get" action="https://www.wolframalpha.com/input/">
+        <label for="i=ZIP+code+">Zip Code: </label><input type="text" name="i=ZIP+code+" />
+        <br />
+        <input type="submit" value="Search" />
+    </form>
+    -->
+
+
     <div class="card-deck">
         <div class="card" style="width: 18rem;">
             <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6935" class="card-img-top" />
@@ -57,6 +67,9 @@
             </div>
         </div>
     </div>
+
+
+
     <table border="1" width="90%">
         <tr>
             <th>Incident #</th>
@@ -73,18 +86,18 @@
         @{
             foreach (CrimeSpace.Crime crime in crimes)
             {
-                <tr>
-                    <td>@crime.IncidentNo</td>
-                    <td>@crime.Offense</td>
-                    <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
-                    <td>@crime.DateFrom</td>
-                    <td>@crime.Dayofweek</td>
-                    <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                    <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                    <td>@crime.LatitudeX</td>
-                    <td>@crime.LongitudeX</td>
-                    <td>@crime.Zip</td>
-                </tr>
+            <tr>
+                <td>@crime.IncidentNo</td>
+                <td>@crime.Offense</td>
+                <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
+                <td>@crime.DateFrom</td>
+                <td>@crime.Dayofweek</td>
+                <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                <td>@crime.LatitudeX</td>
+                <td>@crime.LongitudeX</td>
+                <td>@crime.Zip</td>
+            </tr>
             }
         }
     </table>
@@ -94,14 +107,14 @@
             @{
                 foreach (ParkSpace.Parks park in parks)
                 {
-                    <tr>
-                        <td>@park.Globalid</td>
-                        <td>@park.Name</td>
-                        <td>@park.ShortName</td>
-                        <td>@park.Parktype</td>
-                        <td>@park.County</td>
-                        <td>@park.Acres</td>
-                    </tr>
+                <tr>
+                    <td>@park.Globalid</td>
+                    <td>@park.Name</td>
+                    <td>@park.ShortName</td>
+                    <td>@park.Parktype</td>
+                    <td>@park.County</td>
+                    <td>@park.Acres</td>
+                </tr>
                 }
             }
         </table>
