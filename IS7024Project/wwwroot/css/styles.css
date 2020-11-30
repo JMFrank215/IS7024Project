@@ -1,4 +1,8 @@
-﻿.image {
+﻿body {
+    background-color: #253026;
+}
+
+.image {
     position: relative;
     width: 100%;
 }

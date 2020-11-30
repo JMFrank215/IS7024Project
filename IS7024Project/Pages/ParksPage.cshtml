@@ -6,21 +6,24 @@
     var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
 
-<div style="padding-top: 20px">
-    <table border="1" width="90%">
-        <tr><th>Global ID</th><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th></tr>
-        @{
-            foreach (ParkSpace.Parks park in parks)
-            {
-                <tr>
-                    <td>@park.Globalid</td>
-                    <td>@park.Name</td>
-                    <td>@park.ShortName</td>
-                    <td>@park.Parktype</td>
-                    <td>@park.County</td>
-                    <td>@park.Acres</td>
-                </tr>
+<body>
+    <div style="padding-top: 20px">
+        <table border="1" width="90%">
+            <tr><th>Global ID</th><th>Name</th><th>Short Name</th><th>Park Type</th><th>County</th><th>Acres</th></tr>
+            @{
+                foreach (ParkSpace.Parks park in parks)
+                {
+                    <tr>
+                        <td>@park.Globalid</td>
+                        <td>@park.Name</td>
+                        <td>@park.ShortName</td>
+                        <td>@park.Parktype</td>
+                        <td>@park.County</td>
+                        <td>@park.Acres</td>
+                    </tr>
+                }
             }
-        }
-    </table>
-</div>
+        </table>
+    </div>
+
+</body>
