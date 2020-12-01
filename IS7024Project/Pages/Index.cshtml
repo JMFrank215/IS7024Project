@@ -50,25 +50,18 @@
             </div>
         </div>
     </div>
-
-
-    <form name="search" method="get" action="https://www.wolframalpha.com/input/">
-        <label for="i=ZIP+code+">Zip Code: </label><input type="text" name="i=ZIP+code+" />
-        <br />
-        <input type="submit" value="Search" />
-    </form>
-
-
     <div class="card-deck">
         <div class="card" style="width: 18rem;">
             <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6935" class="card-img-top" />
             <div class="card-body">
                 <h1 class="card-title text-center text-white"><span class="badge badge-success text-center"><strong>Search by Area </strong></span></h1>
                 <p class="card-text">Enter your search terms below to view parks in your area and the associated crime reports for that area.</p>
+                <div style="padding-top: 20px">
+                    <p>Planning a trip for today? @ViewData["WeatherMessage"]</p>
+                </div>
             </div>
         </div>
     </div>
-
     <div>
         <input type="search" id="mySearch" placeholder="Searching for a neighborhood..">
         <p>Please enter a neighborhood.</p>
@@ -81,7 +74,6 @@
             }
         </script>
     </div>
-
     <div id="printonly">
         Sources: https://data-cagisportal.opendata.arcgis.com/, https://data.cincinnati-oh.gov/
     </div>

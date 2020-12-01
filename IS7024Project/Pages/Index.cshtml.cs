@@ -39,10 +39,10 @@ namespace IS7024Project.Pages
                 }
                 if (precip < 1)
                 {
-                    ViewData["WeatherMessage"] = "Not looking like rain today!";
+                    ViewData["WeatherMessage"] = "Not looking like rain!";
                 } else
                 {
-                    ViewData["WeatherMessage"] = "Rain expected today, careful out there!";
+                    ViewData["WeatherMessage"] = "Rain expected, be careful out there!";
                 }
 
                 //Consuming Parks data
