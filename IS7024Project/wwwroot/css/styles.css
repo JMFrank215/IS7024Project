@@ -95,3 +95,10 @@ h3 {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+#weathertext {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}

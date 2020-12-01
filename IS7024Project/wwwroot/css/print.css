@@ -45,3 +45,10 @@ h3 {
     display: block;
     font: bold 45px/45px Helvetica, Sans-Serif;
 }
+
+#weathertext {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}

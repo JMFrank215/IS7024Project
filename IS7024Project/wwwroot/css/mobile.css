@@ -39,3 +39,10 @@ h3 {
 #printonly {
     display: none;
 }
+
+#weathertext {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
