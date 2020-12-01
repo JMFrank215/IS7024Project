@@ -25,7 +25,7 @@ namespace IS7024Project.Pages
         public void OnGet()
         {
             using (var webClient = new WebClient())
-            { /*
+            { 
                 //Consuming Weather data
                 String key = System.IO.File.ReadAllText("WeatherAPIKey.txt"); 
                 String weatherString = webClient.DownloadString("https://api.weatherbit.io/v2.0/current?&city=Cincinnati&country=USA&key=" + key);
@@ -49,7 +49,7 @@ namespace IS7024Project.Pages
                 string crimesJSON = webClient.DownloadString("https://raw.githubusercontent.com/JMFrank215/IS7024Project/master/Parks_Data.txt");
                 var parks = Parks.FromJson(crimesJSON);
                 ViewData["Parks"] = parks;
-                ParkSpace.Parks[] Parksparks = ParkSpace.Parks.FromJson(crimesJSON); */
+                ParkSpace.Parks[] Parksparks = ParkSpace.Parks.FromJson(crimesJSON); 
 
 
                 //Consuming Crime data
