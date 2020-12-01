@@ -27,7 +27,7 @@ namespace IS7024Project.Pages
             using (var webClient = new WebClient())
             { 
                 //Consuming Weather data
-                String key = System.IO.File.ReadAllText("WeatherAPIKey.txt"); 
+                String key = "4aa3dc52539246b7a6911f057001e696"; 
                 String weatherString = webClient.DownloadString("https://api.weatherbit.io/v2.0/current?&city=Cincinnati&country=USA&key=" + key);
                 WeatherSpace.Weather weatherWeather = WeatherSpace.Weather.FromJson(weatherString);
 
