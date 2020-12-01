@@ -5,37 +5,30 @@
     var crimes = (CrimeSpace.Crime[])ViewData["Crime"];
     var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
-<body>
-    <table border="1" width="90%">
-        <tr>
-            <th>Incident #</th>
-            <th>Offense</th>
-            <th>Location</th>
-            <th>Date</th>
-            <th>Day of Week</th>
-            <th>Community Council Neighborhood</th>
-            <th>CPD Neighborhood</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Zip</th>
-        </tr>
-        @{
-            foreach (CrimeSpace.Crime crime in crimes)
-            {
+<head>
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="css/print.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="css/mobile.css" type="text/css" medai="screen and (max-device-width: 480px)" />
+</head>
 
-                <tr>
-                    <td>@crime.IncidentNo</td>
-                    <td>@crime.Offense</td>
-                    <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
-                    <td>@crime.DateFrom</td>
-                    <td>@crime.Dayofweek</td>
-                    <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                    <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
-                    <td>@crime.LatitudeX</td>
-                    <td>@crime.LongitudeX</td>
-                    <td>@crime.Zip</td>
-                </tr>
-            }
-        }
-    </table>
+<body>
+    <div class="card-deck">
+        <div class="card" style="width: 18rem;">
+            <img src="https://s7d2.scene7.com/is/image/TWCNews/police_lights_stocka1280x720jpgjpg-2" class="card-img-top" />
+            <div class="card-body">
+                <h1 class="card-title text-center text-white"><span class="badge badge-success text-center"><strong>See Crime Data by Area</strong></span></h1>
+                <h4 class="card-text">Select a county from the dropdown below to see crime reports for each county:</h4>
+                <div class="dropdown">
+                    <button class="dropbtn">County List</button>
+                    <div class="dropdown-content">
+                        <a href="/GreeneCrime">Greene County</a>
+                        <a href="/HamiltonCrime">Hamilton County</a>
+                    </div>
+                </div>
+                <div style="padding-top: 20px">
+                    <p>Planning a trip for today? @ViewData["WeatherMessage"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>

@@ -1,43 +1,38 @@
 ﻿@page
 @using System.Text.RegularExpressions
-@model IS7024Project.Pages.CrimePageModel
+@model IS7024Project.Pages.ParksPageModel
 @{
     var crimes = (CrimeSpace.Crime[])ViewData["Crime"];
     var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
 
-
-<p class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" asp-page="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <h5>Navigation Options</h5>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" asp-page="/Index"><h5>View Parks Data</h5></a>
-        <a class="dropdown-item" asp-page="/Index"><h5>View Crime Data</h5></a>
-    </div>
-</p>
+<head>
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="css/print.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="css/mobile.css" type="text/css" medai="screen and (max-device-width: 480px)" />
+</head>
 
 <body>
-    <div style="padding-top: 20px">
-        <table id="parkstable" border="1" width="90%">
-            <tr><th>Name</th><th>Short Name</th><th>County</th><th>Acres</th></tr>
-            @{
-                foreach (ParkSpace.Parks park in parks)
-                {
-                    var parkCounty = park.County.ToString();
-                    if (parkCounty.Equals("Kenton"))
-                    {
-                        <tr>
-                            <td>@park.Name</td>
-                            <td>@park.ShortName</td>
-                            <td>@park.County</td>
-                            <td>@park.Acres</td>
-                        </tr>
-                        }
-
-                    }
-                }
-        </table>
+    <div class="card-deck">
+        <div class="card" style="width: 18rem;">
+            <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6935" class="card-img-top" />
+            <div class="card-body">
+                <h1 class="card-title text-center text-white"><span class="badge badge-success text-center"><strong>Explore Parks in Your Area</strong></span></h1>
+                <h4 class="card-text">Select a county from the dropdown below to view parks in the area:</h4>
+                <div class="dropdown">
+                    <button class="dropbtn">County List</button>
+                    <div class="dropdown-content">
+                        <a href="/GreeneParks">Greene County</a>
+                        <a href="/ButlerParks">Butler County</a>
+                        <a href="/ClermontParks">Clermont County</a>
+                        <a href="/HamiltonParks">Hamilton County</a>
+                        <a href="/WarrenParks">Warren County</a>
+                    </div>
+                </div>
+                <div style="padding-top: 20px">
+                    <p>Planning a trip for today? @ViewData["WeatherMessage"]</p>
+                </div>
+            </div>
+        </div>
     </div>
-
 </body>

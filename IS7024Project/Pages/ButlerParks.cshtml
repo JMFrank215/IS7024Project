@@ -1,0 +1,32 @@
+﻿@page
+@model IS7024Project.Pages.ButlerParksModel
+@{
+    var crimes = (CrimeSpace.Crime[])ViewData["Crime"];
+    var parks = (ParkSpace.Parks[])ViewData["Parks"];
+}
+
+
+<body>
+    <div style="padding-top: 20px">
+        <table id="parkstable" border="1" width="90%">
+            <tr><th>Name</th><th>Short Name</th><th>County</th><th>Acres</th></tr>
+            @{
+                foreach (ParkSpace.Parks park in parks)
+                {
+                    var parkCounty = park.County.ToString();
+                    if (parkCounty.Equals("Butler"))
+                    {
+                        <tr>
+                            <td>@park.Name</td>
+                            <td>@park.ShortName</td>
+                            <td>@park.County</td>
+                            <td>@park.Acres</td>
+                        </tr>
+                    }
+
+                }
+            }
+        </table>
+    </div>
+
+</body>
