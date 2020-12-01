@@ -69,6 +69,19 @@
         </div>
     </div>
 
+    <div>
+        <input type="search" id="mySearch" placeholder="Searching for a neighborhood..">
+        <p>Please enter a neighborhood.</p>
+        <button onclick="myFunction()">Click enter</button>
+        <p id="demo"></p>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("mySearch").placeholder;
+                document.getElementById("demo").innerHTML = x;
+            }
+        </script>
+    </div>
+
     <div id="printonly">
         Sources: https://data-cagisportal.opendata.arcgis.com/, https://data.cincinnati-oh.gov/
     </div>

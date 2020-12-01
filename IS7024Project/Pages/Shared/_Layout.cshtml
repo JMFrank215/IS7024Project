@@ -17,12 +17,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                   <ul class="navbar-nav flex-grow-1 justify-content-left">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" asp-page="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <h5>Navigation Options</h5>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-page="/ParksPage"><h5>View Parks Data</h5></a>
+                                <a class="dropdown-item" asp-page="/CrimePage"><h5>View Crime Data</h5></a>
+                            </div>
                         </li>
                     </ul>
                 </div>
