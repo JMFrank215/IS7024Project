@@ -2,8 +2,8 @@
 @using System.Text.RegularExpressions
 @model IndexModel
 @{
-    var crimes = (CrimeSpace.Crime[]) ViewData["Crime"];
-    var parks = (ParkSpace.Parks[]) ViewData["Parks"];
+    var crimes = (CrimeSpace.Crime[])ViewData["Crime"];
+    var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
 <!-- Image over text help found at: https://css-tricks.com/text-blocks-over-image/ -->
 <head>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/print.css" type="text/css" media="print" />
     <link rel="stylesheet" href="css/mobile.css" type="text/css" medai="screen and (max-device-width: 480px)" />
 
-    
+
 
 </head>
 
@@ -68,8 +68,9 @@
             </div>
         </div>
     </div>
-    
+
     <div id="printonly">
         Sources: https://data-cagisportal.opendata.arcgis.com/, https://data.cincinnati-oh.gov/, https://www.weatherbit.io
     </div>
+
 </body>
