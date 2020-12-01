@@ -1,0 +1,42 @@
+﻿@page
+@using System.Text.RegularExpressions
+@model IS7024Project.Pages.AllCrimeModel
+@{
+    var crimes = (CrimeSpace.Crime[])ViewData["Crime"];
+    var parks = (ParkSpace.Parks[])ViewData["Parks"];
+}
+
+
+<body>
+    <table border="1" width="90%">
+        <tr>
+            <th>Incident #</th>
+            <th>Offense</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Day of Week</th>
+            <th>Community Council Neighborhood</th>
+            <th>CPD Neighborhood</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Zip</th>
+        </tr>
+        @{
+            foreach (CrimeSpace.Crime crime in crimes)
+            {               
+                <tr>
+                    <td>@crime.IncidentNo</td>
+                    <td>@crime.Offense</td>
+                    <td>@Regex.Replace(@Regex.Replace(@crime.Location.ToString(), "[\\d-]", string.Empty), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@crime.DateFrom</td>
+                    <td>@crime.Dayofweek</td>
+                    <td>@Regex.Replace(@crime.CommunityCouncilNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@Regex.Replace(@crime.CpdNeighborhood.ToString(), "([a-z])([A-Z])", "$1 $2")</td>
+                    <td>@crime.LatitudeX</td>
+                    <td>@crime.LongitudeX</td>
+                    <td>@crime.Zip</td>
+                </tr>               
+            }
+        }
+    </table>
+</body>
