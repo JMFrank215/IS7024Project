@@ -43,3 +43,8 @@ h3 {
 #printonly {
     display: none;
 }
+
+#parkstable {
+    border: 1px solid #ddd;
+    width: 90%;
+}
