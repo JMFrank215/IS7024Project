@@ -5,27 +5,48 @@
     var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
 
+<head>
+    <style>
+        img {
+            opacity: 1;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
 
 <body>
-    <div style="padding-top: 20px">
-        <table id="parkstable" border="1" width="90%">
-            <tr><th>Name</th><th>Short Name</th><th>County</th><th>Acres</th></tr>
-            @{
-                foreach (ParkSpace.Parks park in parks)
-                {
-                    var parkCounty = park.County.ToString();
-                    if (parkCounty.Equals("Clermont"))
-                    {
-                        <tr>
-                            <td>@park.Name</td>
-                            <td>@park.ShortName</td>
-                            <td>@park.County</td>
-                            <td>@park.Acres</td>
-                        </tr>
-                    }
+    <div class="container">
+        <img src="https://www.clermontparks.org/wp-content/uploads/sites/39/2017/12/Artboard-1.png" alt="Clermont County Parks and Trails" width="1000" height="300">
+    </div>
 
+    <div class="container">
+        <h2 class="display-1">Clermont County Parks </h2>
+        <p>Welcome to the page about Clermont County's Parks. Here you will find some basic information about the parks in your local area.</p>
+    </div>
+    <div style="padding-top: 20px">
+        <table class="table" id="parkstable" border="1" width="90%">
+            <thead class="thead-dark">
+                <tr><th>Name</th><th>Short Name</th><th>County</th><th>Acres</th></tr>
+                @{
+                    foreach (ParkSpace.Parks park in parks)
+                    {
+                        var parkCounty = park.County.ToString();
+                        if (parkCounty.Equals("Clermont"))
+                        {
+                            <tr>
+                                <td>@park.Name</td>
+                                <td>@park.ShortName</td>
+                                <td>@park.County</td>
+                                <td>@park.Acres</td>
+                            </tr>
+                        }
+
+                    }
                 }
-            }
+            </thead>
         </table>
     </div>
 

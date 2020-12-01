@@ -6,21 +6,43 @@
     var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
 
+<head>
+    <style>
+        img {
+            opacity: 1;
+            align-content: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
 
 <body>
-    <table border="1" width="90%">
-        <tr>
-            <th>Incident #</th>
-            <th>Offense</th>
-            <th>Location</th>
-            <th>Date</th>
-            <th>Day of Week</th>
-            <th>Community Council Neighborhood</th>
-            <th>CPD Neighborhood</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Zip</th>
-        </tr>
+    <div class="container">
+        <img src="https://www.hamiltoncountyohio.gov/UserFiles/Servers/Server_3788196/Image/About/About%20Hamilton%20County/County%20Emblem%20Artwork/color/Alternative-Seal-Color-and-Text.jpg" alt="Greene County Parks and Trails" width="1000" height="300">
+    </div>
+
+    <div class="container">
+        <h2 class="display-1">Hamilton County Crimes </h2>
+        <p>Welcome to the page about Hamilton County's Crimes. Here you will find some basic information about the crimes from the local area.</p>
+    </div>
+    <table class="table" border="1" width="90%">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Incident #</th>
+                <th scope="col">Offense</th>
+                <th scope="col">Location</th>
+                <th scope="col">Date</th>
+                <th scope="col">Day of Week</th>
+                <th scope="col">Community Council Neighborhood</th>
+                <th scope="col">CPD Neighborhood</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Zip</th>
+            </tr>
+        </thead>
         @{
             foreach (CrimeSpace.Crime crime in crimes)
             {
