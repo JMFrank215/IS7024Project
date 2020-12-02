@@ -6,16 +6,18 @@
     var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
 
+<!DOCTYPE html>
 <head>
+    <title>Cincy Safe Space</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css" />
     <link rel="stylesheet" href="css/print.css" type="text/css" media="print" />
-    <link rel="stylesheet" href="css/mobile.css" type="text/css" medai="screen and (max-device-width: 480px)" />
+    <link rel="stylesheet" href="css/mobile.css" type="text/css" media="screen and (max-width: 480px)" />
 </head>
 
 <body>
     <div class="card-deck">
         <div class="card" style="width: 18rem;">
-            <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6935" class="card-img-top" />
+            <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6935" class="card-img-top" alt="city view" />
             <div class="card-body">
                 <h1 class="card-title text-center text-white"><span class="badge badge-success text-center"><strong>Explore Parks in Your Area</strong></span></h1>
                 <h4 class="card-text">Select a county from the dropdown below to view parks in the area:</h4>
@@ -35,12 +37,13 @@
             </div>
         </div>
         <div class="card" style="width: 18rem;">
-            <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6934" class="card-img-top" />
+            <img src="https://www.cityofml.com/ImageRepository/Document?documentID=6934" class="card-img-top" alt="city view" />
             <div class="card-body">
                 <h1 class="card-title text-center text-white"><span class="badge badge-success text-center"><strong>View All</strong></span></h1>
                 <h4 class="card-text">If you don't have an area in mind, you can view the entire list of parks below:</h4>
                 <h4 class="card-text"><span class="badge badge-success text-center text-white"><a href="/AllParks">Click here to view all parks data.</a></span></h4>
                 <div style="padding-top: 20px">
+                </div>
             </div>
         </div>
     </div>

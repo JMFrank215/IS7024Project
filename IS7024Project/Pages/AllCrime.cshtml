@@ -6,7 +6,10 @@
     var parks = (ParkSpace.Parks[])ViewData["Parks"];
 }
 
-
+<!DOCTYPE html>
+<head>
+    <title>Cincy Safe Space</title>
+</head>
 <body>
     <table border="1" width="90%">
         <tr>
@@ -23,7 +26,7 @@
         </tr>
         @{
             foreach (CrimeSpace.Crime crime in crimes)
-            {               
+            {
                 <tr>
                     <td>@crime.IncidentNo</td>
                     <td>@crime.Offense</td>
@@ -35,7 +38,8 @@
                     <td>@crime.LatitudeX</td>
                     <td>@crime.LongitudeX</td>
                     <td>@crime.Zip</td>
-                </tr>               
+                </tr>
+
             }
         }
     </table>
